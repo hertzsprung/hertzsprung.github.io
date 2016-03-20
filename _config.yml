@@ -13,6 +13,12 @@ orcid: 0000-0002-0928-3604
 stackoverflow_userid: 150884
 stackexchange_userid: 50566
 
+paginate: 1
+relative_permalinks: false
+
 # Build settings
+gems:
+  - jekyll-paginate
+  - jekyll-gist
 markdown: kramdown
 permalink: pretty

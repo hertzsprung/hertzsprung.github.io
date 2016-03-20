@@ -19,34 +19,21 @@ a:active {
 	color: #4293E8;
 }
 
-header.site {
-	border-bottom: 1px solid #CEE2EB;
+/* article */
+
+article {
+	margin-bottom: 3em;
 }
 
-header.site p {
-	max-width: 36em;
-	color: #333;
-}
-
-h1.site-title {
-	font-weight: 300;
-	font-size: 40pt;
-	margin-top: 0;
-	margin-bottom: 0.3em;
-}
-
-h1.site-title a,
-h1.site-title a:visited {
+article h1 {
 	color: #122741;
 }
 
-h1.site-title a:hover {
-	text-decoration: none;
-}
+/* header */
 
-footer.site {
-	border-top: 1px solid #CEE2EB;
-	padding-top: 0.5em;
+header.site {
+	border-bottom: 1px solid #CEE2EB;
+	margin-bottom: 1em;
 }
 
 header.site p {
@@ -55,23 +42,40 @@ header.site p {
 	color: #333;
 }
 
-h1.site-title {
+header.site h1 {
 	font-weight: 300;
 	font-size: 40pt;
 	margin-top: 0;
 	margin-bottom: 0.3em;
 }
 
-h1.site-title a,
-h1.site-title a:visited {
+header.site h1 a,
+header.site h1 a:visited,
+article h1 a {
 	color: #122741;
 }
 
-h1.site-title a:hover {
+header.site h1 a:hover,
+header.site h1 a:active,
+article h1 a:hover,
+article h1 a:active {
+	text-decoration: none;
 	color: #255187;
 }
 
+/* footer */
+
 footer.site {
+	border-top: 1px solid #CEE2EB;
+	padding-top: 0.5em;
+}
+
+.pagination {
+	text-align: center;
+}
+
+footer.site {
+	margin-top: 1em;
 }
 
 footer.site a:hover {
@@ -88,7 +92,6 @@ footer.site ul.nav {
 footer.site ul.nav li {
 	display: inline;
 	padding-left: 0.5em;
-}
 }
 
 footer.site ul.nav { 

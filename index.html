@@ -1,4 +1,36 @@
 ---
 layout: default
 ---
-&nbsp;
+{% for post in paginator.posts %}
+  <article class="preview">
+    <h1><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
+    <p class="meta">{{ post.date | date: "%-d %B %Y" }}</p>
+    {{ post.excerpt}}
+  </article>
+{% endfor %}
+
+{% if paginator.total_pages > 1 %}
+  <p class="pagination">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path }}">Previous</a>
+    {% else %}
+      Previous
+    {% endif %}
+
+    {% for page in (1..paginator.total_pages) %}
+      {% if page == paginator.page %}
+        {{ page }}
+      {% elsif page == 1 %}
+        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+      {% else %}
+        <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path }}">Next</a>
+    {% else %}
+      Next
+    {% endif %}
+  </p>
+{% endif %}
