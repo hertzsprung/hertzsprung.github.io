@@ -1,11 +1,17 @@
 # Site settings
-title: Your awesome title
+title: DatumEdge
 email: js102@zepler.net
-description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
 baseurl: ""
-url: "http://yourdomain.com"
+url: "http://hertzsprung.github.io"
 twitter_username: hertzsprrrung
 github_username:  hertzsprung
+flickr_username: hzsp
+linkedin_userid: james-shaw-ba759a65
+researchgate_userid: James_Shaw14
+googlescholar_userid: HKgUofEAAAAJ
+orcid: 0000-0002-0928-3604
+stackoverflow_userid: 150884
+stackexchange_userid: 50566
 
 # Build settings
 markdown: kramdown
