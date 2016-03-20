@@ -6,7 +6,18 @@ body {
 	margin-right: 1em;
 }
 
-a { text-decoration: none; }
+a {
+	text-decoration: none;
+	color: #2A5E94;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:active {
+	color: #4293E8;
+}
 
 header.site {
 	border-bottom: 1px solid #CEE2EB;
@@ -30,7 +41,7 @@ h1.site-title a:visited {
 }
 
 h1.site-title a:hover {
-	color: #255187;
+	text-decoration: none;
 }
 
 footer.site {
@@ -61,6 +72,10 @@ h1.site-title a:hover {
 }
 
 footer.site {
+}
+
+footer.site a:hover {
+	text-decoration: none;
 }
 
 footer.site ul.nav { 
