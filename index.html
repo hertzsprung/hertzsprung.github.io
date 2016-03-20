@@ -5,7 +5,8 @@ layout: default
   <article class="preview">
     <h1><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
     <p class="meta">{{ post.date | date: "%-d %B %Y" }}</p>
-    {{ post.excerpt}}
+    {{ post.excerpt }}
+    <p><a href="{{ post.url | prepend: site.baseurl }}">Read more&hellip;</a></p>
   </article>
 {% endfor %}
 

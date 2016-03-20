@@ -8,6 +8,21 @@
       </a>
     </li>
     <li>
+      <a title="RSS feed" href="{{ "/feed.xml" | prepend: site.baseurl }}">
+        <svg width="32" height="32" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
+          <style type="text/css">
+            .button {fill: #fb7629;}
+            .symbol {fill: white;}
+          </style>
+
+          <rect   class="button" width="8" height="8" rx="1.5" />
+          <circle class="symbol" cx="2" cy="6" r="1" />
+          <path   class="symbol" d="m 1,4 a 3,3 0 0 1 3,3 h 1 a 4,4 0 0 0 -4,-4 z" />
+          <path   class="symbol" d="m 1,2 a 5,5 0 0 1 5,5 h 1 a 6,6 0 0 0 -6,-6 z" />
+        </svg>
+      </a>
+    </li>
+    <li>
       <a title="Twitter" href="https://twitter.com/{{ site.twitter_username }}">
         <!-- https://raw.githubusercontent.com/johan/svg-cleanups/master/logos/twitter.svg -->
         <svg width="32" height="32" viewBox="0 0 335 276" fill="#3ba9ee" xmlns="http://www.w3.org/2000/svg">
