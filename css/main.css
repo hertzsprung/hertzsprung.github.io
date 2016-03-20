@@ -1,13 +1,93 @@
-a { 			text-decoration: none; }
-
-ul.foot_nav { 
-			list-style: none;
-			padding-left: 0;
-			display:table;
-			margin:0 auto;
+body {
+	font-family: 'Merriweather', serif;
+	font-size: 12pt;
+	background-color: #fdfdfd;
+	margin-left: 1em;
+	margin-right: 1em;
 }
 
-ul.foot_nav li {
-			display: inline;
-			padding-left: 0.5em;
+a { text-decoration: none; }
+
+header.site {
+	border-bottom: 1px solid #CEE2EB;
+}
+
+header.site p {
+	max-width: 36em;
+	color: #333;
+}
+
+h1.site-title {
+	font-weight: 300;
+	font-size: 40pt;
+	margin-top: 0;
+	margin-bottom: 0.3em;
+}
+
+h1.site-title a,
+h1.site-title a:visited {
+	color: #122741;
+}
+
+h1.site-title a:hover {
+	color: #255187;
+}
+
+footer.site {
+	border-top: 1px solid #CEE2EB;
+	padding-top: 0.5em;
+}
+
+header.site p {
+	margin-bottom: 0.5em;
+	max-width: 36em;
+	color: #333;
+}
+
+h1.site-title {
+	font-weight: 300;
+	font-size: 40pt;
+	margin-top: 0;
+	margin-bottom: 0.3em;
+}
+
+h1.site-title a,
+h1.site-title a:visited {
+	color: #122741;
+}
+
+h1.site-title a:hover {
+	color: #255187;
+}
+
+footer.site {
+}
+
+footer.site ul.nav { 
+	list-style: none;
+	padding-left: 0;
+	display: table;
+	margin: 0 auto;
+}
+
+footer.site ul.nav li {
+	display: inline;
+	padding-left: 0.5em;
+}
+}
+
+footer.site ul.nav { 
+	list-style: none;
+	padding-left: 0;
+	display: table;
+	margin: 0 auto;
+}
+
+footer.site ul.nav li {
+	display: inline;
+	padding-left: 0.5em;
+}
+
+footer.site li.license {
+	white-space: nowrap;
 }
