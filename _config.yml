@@ -3,6 +3,8 @@ title: DatumEdge
 email: js102@zepler.net
 baseurl: ""
 url: "http://hertzsprung.github.io"
+disqus_shortname: datumedge
+googleanalytics_trackingid: UA-21222854-2
 twitter_username: hertzsprrrung
 github_username:  hertzsprung
 flickr_username: hzsp
@@ -12,6 +14,13 @@ googlescholar_userid: HKgUofEAAAAJ
 orcid: 0000-0002-0928-3604
 stackoverflow_userid: 150884
 stackexchange_userid: 50566
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      comments: true
 
 paginate: 1
 relative_permalinks: false
