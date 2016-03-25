@@ -1,0 +1,37 @@
+---
+layout: post
+title:  "Upgrading Intel video drivers for Xubuntu 13.04"
+date:   2013-08-26 19:43:00
+---
+Having purchased a refurbished <a href="http://shop.lenovo.com/us/en/laptops/thinkpad/x-series/x301">ThinkPad X301</a> this month, I set about installing Xubuntu 13.04.  So far, the only problem I have had was with the Intel video drivers.  I was seeing some screen corruption, especially with <a href="http://packages.ubuntu.com/raring/rxvt-unicode-256color"><code>rxvt</code></a>:
+
+<figure><img src="/images/corruption.png" /><figcaption>Example of screen corruption with <code>urxvt</code></figcaption></figure>
+
+<a href="https://bugs.freedesktop.org/show_bug.cgi?id=66055">FreeDesktop's bug tracker confirmed</a> that I wasn't alone in having the problem, and this post explains how I fixed it.
+
+<dl>
+<dt><code>aptitude purge xserver-xorg-video-all</code></dt>
+<dd>This is a metapackage that depends upon video drivers for all supported chipsets.  You can safely uninstall it without uninstalling all the chipset drivers.</dd>
+
+<dt>Download the latest driver source</dt>
+<dd>Fetch the <code>xf86-video-intel</code> archive from the <a href="http://xorg.freedesktop.org/archive/individual/driver/">XOrg archives</a>; as of August 2013, the latest version is <a href="http://xorg.freedesktop.org/archive/individual/driver/xf86-video-intel-2.21.15.tar.bz">2.21.15</a>.</dd>
+
+<dt>Install a toolchain</dt>
+<dd>If you don't already have them, you will need to <code>aptitude install <a href="http://packages.ubuntu.com/raring/build-essential">build-essential</a> <a href="http://packages.ubuntu.com/raring/xserver-xorg-dev">xserver-xorg-dev</a></code></dd>
+
+<dt><code>./configure && make && make install</code></dt>
+<dd>Installs the Intel video driver into <code>/usr/local</code>.  However, X11 does not scan this path by default<a href="#footnote1"><sup>1</sup></a>.</dd>
+
+<dt><code>aptitude purge xserver-xorg-video-intel</code></dt>
+<dd>Removes the older, packaged version of the driver</dd>
+
+<dt><code>ln -s /usr/local/lib/xorg/modules/drivers/intel_drv.so /usr/lib/xorg/modules/drivers/</code></dt>
+<dd>Symlinks the driver into a path where X11 can discover it</dd>
+
+<dt>Restart X11</dt>
+<dd>Drop to a tty with ctrl-alt-f1 and <code>service lightdm restart</code></dd>
+</dl>
+
+<p id="footnote1"><sup>1</sup> If anyone knows how to persuade X11 to search <code>/usr/local/lib/xorg</code>, tell me how in the comments.</p>
+
+The screen corruption bug should be fixed in Ubuntu 13.10 since <a href="http://packages.ubuntu.com/saucy/xserver-xorg-video-intel">it will include a more recent driver version</a>.

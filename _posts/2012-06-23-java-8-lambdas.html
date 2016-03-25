@@ -1,0 +1,85 @@
+---
+layout: post
+title:  "Java 8 lambdas"
+date:   2012-06-23 00:37:00
+---
+<p>Scheduled for <a href="http://mail.openjdk.java.net/pipermail/jdk8-dev/2012-April/000942.html">release in 2013</a>, Java 8 will include language support for lambda functions.  Although the specification is still in flux, lambdas are already implemented in JDK 8 binaries.</p>
+
+<p>This article takes a tour of the new lambda syntax, the use of lambdas in the Collections API, and related language enhancements.  All code snippets were compiled with <a href="http://jdk8.java.net/lambda/">JDK 8 lambda build b39</a>.</p>
+
+<h2>Functional interfaces</h2>
+<p>Interfaces that have just one method are called <i>functional interfaces</i>.  Lambda expressions can be used anywhere we have a functional interface.</p>
+
+<p><a href="http://docs.oracle.com/javase/7/docs/api/java/awt/event/ActionListener.html"><code>java.awt.event.ActionListener</code></a> is a functional interface since it has one method, <code>void&nbsp;actionPerformed(ActionEvent)</code>.  In Java 7 we can write
+  {% gist hertzsprung/2962215 %}
+
+  In Java 8 this becomes
+  {% gist hertzsprung/2962232 %}
+</p>
+
+<p>Here, the compiler knows that the lambda expression must conform to the signature <code>void&nbsp;actionPerformed(ActionEvent)</code>.  It sees that the lambda body returns void, and it can infer that type of parameter <code><i>e</i></code> is <code>java.awt.event.ActionEvent</code>.</p>
+
+<h2>Functional collections</h2>
+<p>The Java 8 class library has a new package, <code>java.util.functions</code>, which contains several new functional interfaces.  Many of these can be used with the Collections API.</p>
+
+<h3>java.util.functions.Predicate</h3>
+<p>Use a predicate to filter a collection:
+  {% gist hertzsprung/2968209 %}
+  Here we have two new methods:
+  <ul>
+    <li><code>Iterable&lt;T&gt;&nbsp;<b>filter(</b>Predicate&lt;?&nbsp;super&nbsp;T&gt;<b>)</b></code> which retains only those elements for which the predicate holds true</li>
+    <li><code>&lt;A&nbsp;extends&nbsp;Fillable&lt;?&nbsp;super&nbsp;T&gt;&gt;&nbsp;A&nbsp;<b>into(</b>A<b>)</b></code> which fills the <code>ArrayList</code> with all the elements retained after filtering</li>
+  </ul>
+</p>
+
+<h3>java.util.functions.Block</h3>
+<p>We can also replace the <code>for</code> loop with another new <code>Iterable</code> method, <code>void&nbsp;<b>forEach(</b>Block&lt;?&nbsp;super&nbsp;T&gt;<b>)</b></code>:
+  {% gist hertzsprung/2968247 %}
+
+  The <code>forEach()</code> method is an example of <a href="http://gafter.blogspot.co.uk/2007/07/internal-versus-external-iterators.html">internal iteration</a>: iteration happens inside the <code>Iterable</code> and our <code>Block</code> can see only one element at a time.</p>
+
+<p>Finally, a less trivial example of functional programming with the Collections API:
+  {% gist hertzsprung/2968389 %}
+
+  <p>Programming collections in this style has some advantages:
+  <dl>
+    <dt>Elements may be computed lazily</dt><dd>If we apply a Mapper to a collection of a thousand elements but only iterate over the first three, the remaining elements will never be mapped.</dd>
+    <dt>Method chaining is encouraged</dt><dd>Hence there's 
+no need to store intermediate results in their own collections.</dd>
+    <dt>Internal iteration hides implementation decisions</dt><dd>For example, we could parallelize a <code>map()</code> operation just by writing <code>myCollection.parallel().map(e&nbsp;&#8209&gt;&nbsp;e.length())</code>.</dd>
+  </dl>
+  </p>
+
+<h2>Method references</h2>
+<p>We can reference a method using the <code>::</code> syntax.  Method references are treated the same way as lambda expressions and can be used wherever a functional interface is accepted.</p>
+
+  We can reference a static method:
+  {% gist hertzsprung/2975454 %}
+
+    Or an instance method:
+    {% gist hertzsprung/2975474 %}
+
+    We can also create factories by assigning a constructor reference to <code>java.util.functions.Factory</code>:
+    {% gist hertzsprung/2975077 %}
+
+    <p>Lastly, let's create a reference to a method of an arbitrary instance:
+    {% gist hertzsprung/2975427 %}
+    
+    Here we do not need to bind the method reference to an instance.  Instead, we pass the instance (in this case, <code><i>address</i></code>) as the first argument to the functional interface.</p>
+
+<h2>Default methods</h2>
+<p>With Java today, it is not possible to add methods to a published interface without breaking existing implementations.  Java 8 gives us a way to specify a default implementation in the interface itself:
+    {% gist hertzsprung/2975612 %}
+
+    Subinterfaces can override a default method:
+    {% gist hertzsprung/2975618 %}
+
+    Or a subinterface can remove the default by redeclaring the method without a body:
+    {% gist hertzsprung/2975628 %}
+    Doing this forces an implementation of <code>FastQueue</code> to implement <code>deleteAll()</code>.</p>
+
+<h2>HotSpot implementation</h2>
+<p>Not only do lambda expressions give rise to more compact source code, but their bytecode and runtime implementation can be more efficient than the anonymous classes we would see in Java 7.  For each lambda expression it finds, the compiler creates a method such as <code>lambda$1()</code>.  This process is called <i>lambda body desugaring</i>.  When the lambda expression is captured, the compiler emits an <a href="http://blog.headius.com/2008/09/first-taste-of-invokedynamic.html"><code>invokedynamic</code></a> call site.  This call site is responsible for capturing values from the lexical scope and binding the desugared method to the target functional interface.</p>
+
+<h2>Further reading</h2>
+<p>Much of this post is based on Brian Goetz's articles <a href="http://cr.openjdk.java.net/~briangoetz/lambda/lambda-state-4.html">State of the Lambda</a>, <a href="http://cr.openjdk.java.net/~briangoetz/lambda/collections-overview.html">State of the Lambda: Libraries Edition</a> and <a href="http://cr.openjdk.java.net/~briangoetz/lambda/lambda-translation.html">Translation of Lambda Expressions</a>.  Between them, these articles address the details of lambda syntax, variable capture, type inference and compilation.</p>

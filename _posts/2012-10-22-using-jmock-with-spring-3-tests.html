@@ -1,0 +1,56 @@
+---
+layout: post
+title:  "Using JMock with Spring 3 tests"
+date:   2012-10-22 23:35:00
+---
+<p>Spring framework comes with a module, Spring Testing, that integrates with JUnit 4.  It allows us to test Spring beans by wiring them into a JUnit test class.  If we are writing an integration test, we may want to mock the dependencies of the bean under test.  This article shows how to include those mock objects in a Spring <code>ApplicationContext</code>.</p>
+
+<p>As an alternative to XML configuration or <a href="http://static.springsource.org/spring/docs/3.1.x/spring-framework-reference/html/beans.html#beans-classpath-scanning">classpath scanning</a>, Spring recently added support for <a href="http://static.springsource.org/spring/docs/3.1.x/spring-framework-reference/html/beans.html#beans-java">Java-based configuration</a>.  We'll take this approach in our example application.</p>
+
+
+{% gist hertzsprung/3934024 %}
+</p>
+
+Let's step through the test:
+<dl>
+<dt><code>@RunWith(SpringJUnit4ClassRunner.class)</code></dt><dd>This JUnit 4 annotation lets Spring Testing hook into the testing lifecycle.</dd>
+<dt><code>@ContextConfiguration(classes={MyServiceConfig.class, MyServiceTest.Config.class})</code></dt><dd>Instructs Spring to create an <code>ApplicationContext</code> containing beans loaded from two configuration classes: <code>MyServiceConfig</code> and <code>MyServiceTest.Config</code>.  The order in which these classes are declared is important: a bean definition from MyServiceTest.Config will overwrite a bean definition MyServiceConfig if they share the same bean name.</dd>
+<dt><code>@DirtiesContext(classMode=AFTER_EACH_TEST_METHOD)</code></dt><dd>Causes Spring to create a new <code>ApplicationContext</code> for each test method.  Since mockeries are stateful, we need to dirty the ApplicationContext to ensure that we have a fresh Mockery for each test method.</dd>
+<dt><code>@Configuration public static class Config</code></dt><dd>In this configuration class we define our mockery and any collaborators that we want to mock.</dd>
+<dt><code>@Bean public MyCollaborator myCollaborator()</code></dt><dd>This bean definition shares the same bean name as <code>MyCollaboratorConfig.myCollaborator()</code>.  When the test runs, you will see a message similar to this, confirming that our mock collaborator replaces the production collaborator:
+<pre>INFO: Overriding bean definition for bean 'myCollaborator':
+replacing
+  [Root bean:
+    factoryBeanName=myCollaboratorConfig;
+    factoryMethodName=myCollaborator;
+    defined in uk.co.datumedge.springmock.MyCollaboratorConfig]
+with
+  [Root bean:
+    factoryBeanName=myServiceTest.Config;
+    factoryMethodName=myCollaborator;
+    defined in uk.co.datumedge.springmock.test.MyServiceTest$Config]</pre></dd>
+<dt><code>@Rule @Autowired public JUnitRuleMockery context</code></dt><dd>Spring autowires the mockery bean defined in <code>MyServiceTest.Config</code>.  The <code>@Rule</code> annotation is similar to <code>@RunWith</code>, allowing JMock to hook into JUnit's testing lifecycle.</dd>
+</dl>
+
+Now we can autowire the class under test, <code>MyService</code>, and its mocked collaborator.  The remainder of the test class is written in the same style as a normal unit test.
+
+<h2>Spring Java configuration gotchas</h2>
+In Spring's Java-based configuration, <code>@Configuration</code>-annotated classes are themselves Spring beans.  This allows us to wire them into other configuration classes and invoke their methods to wire beans together:
+
+{% gist hertzsprung/3934917 %}
+</p>
+
+How is it that our test uses the mock collaborator, when we can see our production collaborator being wired in this configuration class?  To explain, we need to understand some of the pixie dust that Spring sprinkles over our source:
+<ul>
+<li>When a class is annotated with <code>@Configuration</code>, Spring generates a dynamic proxy class containing the mechanics needed to create bean definitions</li>
+<li>When you invoke a method on a configuration class, you are really invoking a method on the generated proxy class</li>
+</ul>
+<p>Invoking a <code>@Bean</code>-annotated method will return a bean that matches the method's return type and method name.  This is usually the instance returned by the method in the source code, unless that bean definition has been overridden.</p>
+
+<p>In our example application, <code>MyServiceTest.Config.myCollaborator()</code> has overridden <code>MyCollaboratorConfig.myCollaborator()</code>.  Calling either method will return the same, mock object.</p>
+
+<h2>Resources</h2>
+<ul>
+<li><a href="https://github.com/hertzsprung/springmock">GitHub repository containing the example code used in this article</a></li>
+<li><a href="http://static.springsource.org/spring/docs/3.1.x/spring-framework-reference/html/testing.html">Spring Framework 3.1 Testing documentation</a></li>
+</ul>

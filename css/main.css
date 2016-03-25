@@ -36,7 +36,8 @@ article {
 }
 
 article h1,
-article h2 {
+article h2,
+article h3 {
 	font-weight: 300;
 	color: #122741;
 	text-align: left;
@@ -53,9 +54,25 @@ article h2 {
 	margin-top: 1.2em;
 }
 
-article li {
+article h3 {
+	font-size: 13pt;
+	font-weight: bold;
+	margin-top: 1.2em;
+}
+
+article li,
+article dd {
 	margin-bottom: 0.7em;
 }
+
+article dt {
+	text-align: left;
+}
+
+article figcaption {
+	font-size: smaller;
+}
+
 
 /* header */
 
@@ -135,6 +152,12 @@ footer.site ul.nav li {
 
 footer.site li.license {
 	white-space: nowrap;
+}
+
+/* gist */
+.gist .blob-code-inner,
+.gist .blob-num {
+	font-size: 11pt !important;
 }
 
 /* resizing */

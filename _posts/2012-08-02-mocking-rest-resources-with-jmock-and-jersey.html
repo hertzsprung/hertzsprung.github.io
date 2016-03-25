@@ -1,0 +1,33 @@
+---
+layout: post
+title:  "Mocking REST resources with JMock and Jersey"
+date:   2012-08-02 22:58:00
+---
+To test code that interacts with a REST resource, we need an HTTP server which provides access to a fake version of that resource.  After a friend of mine released a <a href="https://bitbucket.org/jideji/fakehttpserver/wiki/Home">fake HTTP library</a>, I started thinking about whether JMock could be used to mock out REST resources.
+
+<p>Let's work through an example application.  We are writing a blog aggregator that has a single capability: to provide the most recent article from each blog in a collection blogs.  The blogs are available as REST resources hosted on different HTTP servers.</p>
+
+<h2>JMock</h2>
+<p><a href="http://www.jmock.org/">JMock</a> is a library that is normally used for mocking dependencies in unit tests.  A unit test for our blog aggregator might look like this:
+{% gist hertzsprung/3230710 %}
+</p>
+
+<h2>Jersey</h2>
+<p><a href="http://jersey.java.net/">Jersey</a>, the reference implementation of JAX-RS, exposes annotated POJOs as REST resources.  Our blog resource looks like this:
+{% gist hertzsprung/3240740 %}
+The library comes with a test framework that lets us serve resources from an HTTP server embedded in a JUnit test.</p>
+
+<h2>Writing the integration test</h2>
+<p>Our integration test is going to:
+<ol>
+<li>Set up the <a href="http://en.wikipedia.org/w/index.php?title=Test_fixture&oldid=502584310#Software">test fixture</a> by hosting two blog resources on local HTTP servers listening on different ports</li>
+<li>Use the Jersey client to HTTP GET and deserialize the JSON representation of the blogs</li>
+<li>Verify that the aggregator produces the expected feed</li>
+</ol>
+</p>
+
+<p>Let's take a look at the test implementation:
+{% gist hertzsprung/3240864 %}
+</p>
+
+<p>A working version of the blog aggregator is <a href="https://github.com/hertzsprung/jerseymock">available on GitHub</a>.</p>

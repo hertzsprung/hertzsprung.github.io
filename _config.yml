@@ -22,7 +22,7 @@ defaults:
     values:
       comments: true
 
-paginate: 6
+paginate: 5
 relative_permalinks: false
 
 # Build settings

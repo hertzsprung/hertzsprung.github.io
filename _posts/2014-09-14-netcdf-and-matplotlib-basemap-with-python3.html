@@ -1,0 +1,21 @@
+---
+layout: post
+title:  "NetCDF and matplotlib basemap with Python 3"
+date:   2014-09-14 15:49:00
+---
+Ubuntu 14.04 does not have packages for <a href="https://github.com/Unidata/netcdf4-python">NetCDF-Python</a> or the <a href="http://matplotlib.org/basemap/">Matplotlib Basemap Toolkit</a> for Python 3.  However, both can be installed from source without too much difficulty.
+
+<ol>
+<li>Install the prerequisite packages with
+<pre>sudo apt-get install python3-matplotlib python3-dev libnetcdf-dev libgeos-dev libhdf5-dev</pre></li>
+<li>Download and extract <a href="https://pypi.python.org/pypi/netCDF4#downloads">NetCDF-Python</a> and install it with
+<pre>sudo python3 setup.py install</pre></li>
+<li>Download and extract <a href="http://sourceforge.net/projects/matplotlib/files/matplotlib-toolkits/">Matplotlib Basemap Toolkit</a></li>
+<li>If you try and install it, you will see the error
+<pre>/usr/bin/ld: cannot find -lgeos</pre>
+To avoid this, symlink the <code>libgeos</code> shared object
+<pre>sudo ln -s /usr/lib/libgeos-3.4.2.so /usr/lib/libgeos.so</pre>
+Then install as before using <pre>sudo python3 setup.py install</pre></li>
+</ol>
+To check the installation, try import both libraries at the Python 3 prompt:
+{% gist hertzsprung/caa0bf35ebdca7fa84b2 %}
