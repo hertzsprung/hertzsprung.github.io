@@ -1,0 +1,62 @@
+---
+layout: post
+title:  "Publishing from GitHub to Maven Central"
+date:   2012-05-07 00:11:00
+---
+<p>Unless your project is <a href="http://maven.apache.org/guides/mini/guide-central-repository-upload.html#Approved_Repository_Hosting">hosted by an approved foundation</a> such as Apache or Codehaus, you won't be able publish artifacts to <a href="http://search.maven.org/">Maven Central</a> directly.  Instead, Sonatype provide their own Nexus repositories for open source projects, and synchronise these with Maven Central.</p>
+
+<p>In this post I've tried to condense <a href="https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide">Sonatype's instructions</a>, and include snippets from the <a href="https://github.com/hertzsprung/redis-launcher/blob/master/pom.xml">POM file of my project, redis-launcher</a>.
+
+<h2>Getting set up</h2>
+<ol>
+  <li>Add source code management information to your POM:
+    {% gist hertzsprung/2604177 pom.xml %}
+  </li>
+
+  <li>Create a GPG key pair and publish the public key.  See the <a href="https://docs.sonatype.org/display/Repository/How+To+Generate+PGP+Signatures+With+Maven">Sonatype documentation</a> for instructions.</li> 
+
+  <li>Check that your project POM meets the <a href="https://docs.sonatype.org/display/Repository/Central+Sync+Requirements">requirements for syncing</a></li>
+
+  <li>Create a <a href="https://issues.sonatype.org/">Sonatype JIRA</a> account and raise a ticket to get your Nexus repository set up</li>
+</ol>
+
+<h2>Using Maven to release to Sonatype Nexus repository</h2>
+<ol>
+  <li>Add the maven-release-plugin to your POM:
+
+    {% gist hertzsprung/2604196 pom.xml %}
+  </li>
+
+  <li>Add the Sonatype repositories:
+
+    {% gist hertzsprung/2604222 pom.xml %}
+  </li>
+
+  <li>Configure artifact signing:
+
+    {% gist hertzsprung/2604245 pom.xml %}
+  </li>
+
+  <li>Edit or create <code>~/.m2/settings.xml</code> to include your credentials:
+
+    {% gist hertzsprung/2604752 settings.xml %}
+
+    Maven does <a href="http://maven.apache.org/guides/mini/guide-encryption.html">have a method to avoid storing plaintext passwords</a>, but I have yet to try it.
+  </li>
+
+</ol>
+
+<h2>Cutting a release</h2>
+<p>To cut a release, issue <a href="http://maven.apache.org/plugins/maven-release-plugin/examples/prepare-release.html"><code>mvn clean release:prepare</code></a>.  Say your project is at version 0.1-SNAPSHOT.  Preparing a release will remove the -SNAPSHOT suffix, commit and tag the code on github, then update the project version to 0.2-SNAPSHOT.</p>
+
+<p>If you need to undo the release, <a href="http://stackoverflow.com/a/6866485/150884">revert the changes</a> with <code>git&nbsp;reset&nbsp;--hard&nbsp;HEAD~2</code>, and <a href="http://nathanhoad.net/how-to-delete-a-remote-git-tag">delete the tag</a> with <code>git&nbsp;tag&nbsp;-d&nbsp;redis-launcher-0.1</code> followed by <code>git&nbsp;push&nbsp;origin&nbsp;:refs/tags/redis-launcher-0.1</code>.</p>
+
+<h2>Publishing to Sonatype</h2>
+<ol>
+  <li>If all is well, you can publish the project artifacts to Sonatype by issuing <a href="http://maven.apache.org/plugins/maven-release-plugin/examples/perform-release.html"><code>mvn release:perform</code></a></li>
+  <li>Log into Sonatype Nexus and find your artifacts under <i>Staging Repositories</i></li>
+  <li>Close, then release the artifacts.  Sonatype have some <a href="https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide#SonatypeOSSMavenRepositoryUsageGuide-8.ReleaseIt">good instructions on using their web interface</a>.  You can automate these steps using the <a href="http://www.sonatype.com/books/nexus-book/reference/staging-sect-managing-plugin.html">Maven repository management plugin</a>, though I haven't tried it myself.</li>
+  <li>Add a comment to your JIRA ticket to say that you've promoted the release</li>
+</ol>
+
+The next time Sonatype synchronises (usually every few hours) your artifacts should be made available on Maven Central.

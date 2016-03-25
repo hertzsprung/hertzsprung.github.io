@@ -1,0 +1,26 @@
+---
+layout: post
+title:  "Idiomatic Hamcrest"
+date:   2012-04-07 18:06:00
+---
+<p><a href="http://code.google.com/p/hamcrest/wiki/Tutorial">Hamcrest</a> is a useful library that lets you build assertions declaratively.  Having worked with the library for a while now, I've found a few useful patterns and a handful of gotchas when writing Hamcrest matchers.</p>
+
+<h2>Make matchers granular</h2>
+<p>Sometimes you want to compare features of two objects having the same type.  Instead of making one matcher that compares many features, write many matchers, each of which compares one feature. By doing this, you can use your custom matchers with Hamcrest's built-in combining matchers.  <a href="http://www.shaunabram.com/hamcrest1.3RC2-javadoc/org/hamcrest/FeatureMatcher.html">FeatureMatchers</a> work well for this type of fine-grained matcher.  If the objects's features are bean properties you can avoid writing a custom matcher by using Hamcrest's <a href="http://www.shaunabram.com/hamcrest1.3RC2-javadoc/org/hamcrest/Matchers.html#hasProperty(java.lang.String, org.hamcrest.Matcher)">hasProperty()</a>.</p>
+
+<h2>Compose matchers</h2>
+<p>You get more power by allowing matchers to accept other matchers.  Here's an example that combines Hamcrest matchers to make an assertion on a <a href="http://jackson.codehaus.org/javadoc/jax-rs/1.0/javax/ws/rs/core/Response.html">JAX-RS Response</a>:</p>
+
+{% gist hertzsprung/2330108 ResponseMatchers.java %}
+
+<p><i>[Aside: Due to <a href="http://code.google.com/p/hamcrest/issues/detail?id=179">a bug in 1.3RC2</a>, you will need to use a more recent version to get useful diagnostics from <code>CombinableMatchers</code>]</i></p>
+
+<h2>Prefer TypeSafeDiagnosingMatchers over TypeSafeMatchers</h2>
+<p>Unless your matchers are dealing with simple types such as Strings or primitives, TypeSafeDiagnosingMatchers will be able to produce better diagnostics.  If you're seeing diagnostics such as <code>Expected: status &lt;404&gt; but: was &lt;com.sun.jersey.core.spi.factory.ResponseImpl@575b2f17&gt;</code>, you probably need a diagnosing matcher.</p>
+
+<h2>Avoid null checks inside Matcher code</h2>
+<p>TypeSafeMatcher and TypeSafeDiagnosingMatchers won't even call your matcher code if the actual value is null.  If you're expecting a null value, use <a href="http://www.shaunabram.com/hamcrest1.3RC2-javadoc/org/hamcrest/Matchers.html#nullValue()"><code>Matchers.nullValue()</code></a> instead of a custom matcher.</p>
+
+<h2>Avoid using mutable objects as actual or expected items</h2>
+<p>Hamcrest assumes that <code>Matcher.matches()</code> is idempotent; indeed, <a href="http://www.shaunabram.com/hamcrest1.3RC2-javadoc/org/hamcrest/TypeSafeDiagnosingMatcher.html#describeMismatch(java.lang.Object, org.hamcrest.Description)"><code>TypeSafeDiagnosingMatcher.describeMismatch()</code></a> gets called twice when two objects do not match.  This means that you should avoid writing an InputStream matcher, for example.
+</p>

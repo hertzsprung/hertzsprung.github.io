@@ -2,8 +2,10 @@ body {
 	font-family: 'Merriweather', serif;
 	font-size: 12pt;
 	background-color: #fdfdfd;
-	margin-left: 1em;
-	margin-right: 1em;
+	margin: 0 auto;
+	max-width: 50em;
+	padding-left: 1em;
+	padding-right: 1em;
 }
 
 a {
@@ -19,14 +21,40 @@ a:active {
 	color: #4293E8;
 }
 
+p.meta {
+	font-weight: 300;
+	font-size: larger;
+	margin-top: 0;
+}
+
 /* article */
 
 article {
+	text-align: justify;
+	line-height: 1.35;
 	margin-bottom: 3em;
 }
 
-article h1 {
+article h1,
+article h2 {
+	font-weight: 300;
 	color: #122741;
+	text-align: left;
+}
+
+article h1 {
+	font-size: 28pt;
+	line-height: 1.2;
+	margin-bottom: 0.2em;
+}
+
+article h2 {
+	font-size: 18pt;
+	margin-top: 1.2em;
+}
+
+article li {
+	margin-bottom: 0.7em;
 }
 
 /* header */
@@ -107,4 +135,20 @@ footer.site ul.nav li {
 
 footer.site li.license {
 	white-space: nowrap;
+}
+
+/* resizing */
+
+@media screen and (max-width: 600px) {
+  header.site h1 {
+	font-size: 32pt;
+  }
+
+  article h1 {
+	font-size: 24pt;
+  }
+
+  article h2 {
+	font-size: 16pt;
+  }
 }
