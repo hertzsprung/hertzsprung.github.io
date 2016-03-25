@@ -108,6 +108,32 @@ article h1 a:active {
 	color: #255187;
 }
 
+/* header nav */
+
+header.site nav ul { 
+	list-style: none;
+	padding-left: 0;
+	display: table;
+	margin: 0 auto;
+}
+
+header.site nav li {
+	display: inline;
+	padding-left: 0.5em;
+}
+
+header.site div.search {
+	max-width: 20em;
+}
+
+.gsc-control-searchbox-only {
+	display: inline !important;
+}
+
+input.gsc-search-button {
+	background-color: #255187 !important;
+}
+
 /* footer */
 
 footer.site {
@@ -136,17 +162,6 @@ footer.site ul.nav {
 
 footer.site ul.nav li {
 	display: inline;
-}
-
-footer.site ul.nav { 
-	list-style: none;
-	padding-left: 0;
-	display: table;
-	margin: 0 auto;
-}
-
-footer.site ul.nav li {
-	display: inline;
 	padding-left: 0.5em;
 }
 
@@ -155,6 +170,7 @@ footer.site li.license {
 }
 
 /* gist */
+
 .gist .blob-code-inner,
 .gist .blob-num {
 	font-size: 11pt !important;

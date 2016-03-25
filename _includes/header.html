@@ -1,4 +1,16 @@
 <header class="site">
   <h1><a href="{{ site.baseurl }}/">{{ site.title }}</a></h1>
   <p>The website of James Shaw, a PhD student researching numerical methods for the atmosphere at <a href="https://www.reading.ac.uk/">University of Reading</a></p>
+
+  <nav>
+    <ul>
+      <li><a href="{{ site.baseurl }}/">Home</a></li>
+      <li><a href="{{ site.baseurl }}/publications/">Publications</a></li>
+      <li><div class="search">
+        {% include search.html %}
+        <gcse:searchbox-only resultsUrl="{{ site.baseurl }}/search/"></gcse:searchbox-only>
+        </div>
+      </li>
+    </ul>
+  </nav>
 </header>
