@@ -115,20 +115,37 @@ header.site nav ul {
 	padding-left: 0;
 	display: table;
 	margin: 0 auto;
+	text-align: center;
 }
 
 header.site nav li {
-	display: inline;
-	padding-left: 0.5em;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+	display:table-cell;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+header.site nav li:after {
+	color: #122741;
+	content:'\00B7';
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+}
+
+header.site nav li:last-child:after {
+	content:'';
 }
 
 header.site div.search {
 	max-width: 20em;
+	display: inline-block;
+	vertical-align: middle;
 }
 
-.gsc-control-searchbox-only {
+/*.gsc-control-searchbox-only {
 	display: inline !important;
-}
+}*/
 
 input.gsc-search-button {
 	background-color: #255187 !important;
