@@ -3,6 +3,7 @@ body {
 	font-size: 12pt;
 	background-color: #fdfdfd;
 	margin: 0 auto;
+	margin-top: 2em;
 	max-width: 50em;
 	padding-left: 1em;
 	padding-right: 1em;
@@ -73,6 +74,16 @@ article figcaption {
 	font-size: smaller;
 }
 
+.social {
+	text-align: right;
+}
+
+.twitter-share-button {
+	display: inline-block;
+	margin-left:auto;
+	margin-right:0;
+}
+
 
 /* header */
 
@@ -138,14 +149,14 @@ header.site nav li:last-child:after {
 }
 
 header.site div.search {
-	max-width: 20em;
+	width: 100%;
 	display: inline-block;
 	vertical-align: middle;
 }
 
-/*.gsc-control-searchbox-only {
-	display: inline !important;
-}*/
+.gsc-search-box {
+	vertical-align: baseline;
+}
 
 input.gsc-search-button {
 	background-color: #255187 !important;
@@ -196,6 +207,10 @@ footer.site li.license {
 /* resizing */
 
 @media screen and (max-width: 600px) {
+  body {
+	margin-top: 1em;
+  }
+
   header.site h1 {
 	font-size: 32pt;
   }
