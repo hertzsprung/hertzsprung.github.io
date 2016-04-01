@@ -1,0 +1,273 @@
+<api>
+<package name="uk.co.datumedge.hamcrest.json"
+>
+<interface name="JSONComparator"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="compare"
+ return="uk.co.datumedge.hamcrest.json.JSONComparisonResult"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="expected" type="T">
+</parameter>
+<parameter name="actual" type="T">
+</parameter>
+<exception name="JSONException" type="org.json.JSONException">
+</exception>
+</method>
+</interface>
+<class name="JSONComparisonResult"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="org.hamcrest.SelfDescribing">
+</implements>
+<constructor name="JSONComparisonResult"
+ type="uk.co.datumedge.hamcrest.json.JSONComparisonResult"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="description" type="org.hamcrest.SelfDescribing">
+</parameter>
+</constructor>
+<method name="describeTo"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="description" type="org.hamcrest.Description">
+</parameter>
+</method>
+<method name="failed"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="passed"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
+<interface name="JSONModalComparator"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="uk.co.datumedge.hamcrest.json.JSONComparator">
+</implements>
+<method name="butAllowingAnyArrayOrdering"
+ return="uk.co.datumedge.hamcrest.json.JSONModalComparator&lt;T&gt;"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="butAllowingExtraUnexpectedFields"
+ return="uk.co.datumedge.hamcrest.json.JSONModalComparator&lt;T&gt;"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</interface>
+<class name="SameJSONAs"
+ extends="org.hamcrest.TypeSafeDiagnosingMatcher"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="SameJSONAs"
+ type="uk.co.datumedge.hamcrest.json.SameJSONAs"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="expected" type="T">
+</parameter>
+<parameter name="comparator" type="uk.co.datumedge.hamcrest.json.JSONModalComparator&lt;T&gt;">
+</parameter>
+</constructor>
+<method name="allowingAnyArrayOrdering"
+ return="uk.co.datumedge.hamcrest.json.SameJSONAs&lt;T&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="allowingExtraUnexpectedFields"
+ return="uk.co.datumedge.hamcrest.json.SameJSONAs&lt;T&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="describeTo"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="description" type="org.hamcrest.Description">
+</parameter>
+</method>
+<method name="matchesSafely"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="actual" type="T">
+</parameter>
+<parameter name="mismatchDescription" type="org.hamcrest.Description">
+</parameter>
+</method>
+<method name="sameJSONArrayAs"
+ return="uk.co.datumedge.hamcrest.json.SameJSONAs&lt;org.json.JSONArray&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="expected" type="org.json.JSONArray">
+</parameter>
+</method>
+<method name="sameJSONArrayAs"
+ return="uk.co.datumedge.hamcrest.json.SameJSONAs&lt;? super org.json.JSONArray&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="expected" type="org.json.JSONArray">
+</parameter>
+<parameter name="comparator" type="uk.co.datumedge.hamcrest.json.JSONModalComparator&lt;org.json.JSONArray&gt;">
+</parameter>
+</method>
+<method name="sameJSONAs"
+ return="uk.co.datumedge.hamcrest.json.SameJSONAs&lt;? super java.lang.String&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="expected" type="java.lang.String">
+</parameter>
+</method>
+<method name="sameJSONAs"
+ return="uk.co.datumedge.hamcrest.json.SameJSONAs&lt;? super java.lang.String&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="expected" type="java.lang.String">
+</parameter>
+<parameter name="comparator" type="uk.co.datumedge.hamcrest.json.JSONModalComparator&lt;java.lang.String&gt;">
+</parameter>
+</method>
+<method name="sameJSONObjectAs"
+ return="uk.co.datumedge.hamcrest.json.SameJSONAs&lt;org.json.JSONObject&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="expected" type="org.json.JSONObject">
+</parameter>
+</method>
+<method name="sameJSONObjectAs"
+ return="uk.co.datumedge.hamcrest.json.SameJSONAs&lt;org.json.JSONObject&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="expected" type="org.json.JSONObject">
+</parameter>
+<parameter name="comparator" type="uk.co.datumedge.hamcrest.json.JSONModalComparator&lt;org.json.JSONObject&gt;">
+</parameter>
+</method>
+</class>
+</package>
+</api>

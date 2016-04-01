@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<rss version="0.91">
+  <channel>
+    <title>Redis Launcher - Checkstyle report</title>
+    <link>https://github.com/hertzsprung/redis-launcher</link>
+    <description>Redis Launcher - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2011 - 2012</copyright>
+    <item>
+      <title>File: 17,
+             Errors: 4,
+             Warnings: 2,
+             Infos: 0
+      </title>
+            <link>https://github.com/hertzsprung/redis-launcher/checkstyle.html</link>
+      <description>
+        <p>Click <a href="https://github.com/hertzsprung/redis-launcher/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="https://github.com/hertzsprung/redis-launcher/checkstyle.html#uk.co.datumedge.redislauncher.ProgrammaticConfiguration.java">uk/co/datumedge/redislauncher/ProgrammaticConfiguration.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/hertzsprung/redis-launcher/checkstyle.html#uk.co.datumedge.redislauncher.KeepRunningOnErrorLifecyclePolicy.java">uk/co/datumedge/redislauncher/KeepRunningOnErrorLifecyclePolicy.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/hertzsprung/redis-launcher/checkstyle.html#uk.co.datumedge.redislauncher.LocalRedisServer.java">uk/co/datumedge/redislauncher/LocalRedisServer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/hertzsprung/redis-launcher/checkstyle.html#uk.co.datumedge.redislauncher.package-info.java">uk/co/datumedge/redislauncher/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/hertzsprung/redis-launcher/checkstyle.html#uk.co.datumedge.redislauncher.AlwaysDestroyLifecyclePolicy.java">uk/co/datumedge/redislauncher/AlwaysDestroyLifecyclePolicy.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/hertzsprung/redis-launcher/checkstyle.html#uk.co.datumedge.redislauncher.ConnectionProperties.java">uk/co/datumedge/redislauncher/ConnectionProperties.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/hertzsprung/redis-launcher/checkstyle.html#uk.co.datumedge.redislauncher.Reply.java">uk/co/datumedge/redislauncher/Reply.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/hertzsprung/redis-launcher/checkstyle.html#uk.co.datumedge.redislauncher.LifecyclePolicy.java">uk/co/datumedge/redislauncher/LifecyclePolicy.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/hertzsprung/redis-launcher/checkstyle.html#uk.co.datumedge.redislauncher.Execution.java">uk/co/datumedge/redislauncher/Execution.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/hertzsprung/redis-launcher/checkstyle.html#uk.co.datumedge.redislauncher.ExecutionProcessDestroyer.java">uk/co/datumedge/redislauncher/ExecutionProcessDestroyer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/hertzsprung/redis-launcher/checkstyle.html#uk.co.datumedge.redislauncher.LocalRedisServerMBean.java">uk/co/datumedge/redislauncher/LocalRedisServerMBean.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/hertzsprung/redis-launcher/checkstyle.html#uk.co.datumedge.redislauncher.CompositeProcessDestroyer.java">uk/co/datumedge/redislauncher/CompositeProcessDestroyer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/hertzsprung/redis-launcher/checkstyle.html#uk.co.datumedge.redislauncher.NullProcessDestroyer.java">uk/co/datumedge/redislauncher/NullProcessDestroyer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/hertzsprung/redis-launcher/checkstyle.html#uk.co.datumedge.redislauncher.ServerNotReadyException.java">uk/co/datumedge/redislauncher/ServerNotReadyException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/hertzsprung/redis-launcher/checkstyle.html#uk.co.datumedge.redislauncher.RedisServer.java">uk/co/datumedge/redislauncher/RedisServer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/hertzsprung/redis-launcher/checkstyle.html#uk.co.datumedge.redislauncher.Configuration.java">uk/co/datumedge/redislauncher/Configuration.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/hertzsprung/redis-launcher/checkstyle.html#uk.co.datumedge.redislauncher.FailedToStopException.java">uk/co/datumedge/redislauncher/FailedToStopException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+
