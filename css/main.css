@@ -28,6 +28,10 @@ p.meta {
 	margin-top: 0;
 }
 
+todo {
+	display: none;
+}
+
 /* article */
 
 article {
