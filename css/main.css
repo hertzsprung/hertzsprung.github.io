@@ -32,6 +32,12 @@ todo {
 	display: none;
 }
 
+.se-logo {
+	vertical-align: middle;
+	width: 2em;
+	margin-right: 0.3em;
+}
+
 /* article */
 
 article {
