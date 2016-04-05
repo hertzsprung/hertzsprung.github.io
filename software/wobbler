@@ -1,0 +1,19 @@
+BASIC
+10 REM >Wobbler
+11 REM Author:  James Shaw
+12 REM Contact: js102@zepler.net
+13 REM Date:    1st July 1997
+14 REM License: Freeware
+
+20 MOUSE x,y,z
+30 REPEAT
+40 MOUSE xx,yy,zz
+50 IF xx<>x OR yy<y THEN PROCwobble
+60 MOUSE x,y,z
+70 UNTIL z=7 OR zz=7
+80 :
+90 DEFPROCwobble
+100 MOUSE TO xx+RND(16)-8,yy+RND(16)-8
+110 ENDPROC
+75 END
+RUN

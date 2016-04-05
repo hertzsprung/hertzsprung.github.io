@@ -1,0 +1,44 @@
+BASIC
+10 REM >Bouncer
+11 REM Author:  James Shaw
+12 REM Contact: js102@zepler.net
+13 REM License: Freeware
+
+15 PROCgetScreenSize
+20 MOUSE x,y,z
+25 count=0:rl=0:ud=0
+30 REPEAT
+35 count+=1
+40 MOUSE x,y,z
+45 WAIT:WAIT:WAIT
+50 MOUSE xx,yy,zz
+60 IF xx>x THEN rl=xx-x
+70 IF yy>y THEN ud=yy-y
+80 IF xx<x THEN rl=xx-x
+90 IF yy<y THEN ud=yy-y
+100 REM IF xx=x THEN rl=0:count=0
+110 REM IF yy=y THEN ud=0:count=0
+120 PROCbounce
+130 UNTIL z=7 OR zz=7
+140 END
+
+200 DEFPROCbounce
+210 MOUSE TO xx+rl,yy+ud
+211 IF xx+rl>maxX% THEN rl=rl-2*rl
+212 IF xx+rl<0 THEN rl-=2*rl
+213 IF yy+ud<0 THEN ud-=2*ud
+214 IF yy+ud>maxY% THEN ud=ud-2*ud
+220 ENDPROC
+
+300 DEFPROCgetScreenSize
+310 DIM b% 20
+320 b%!0 = 4   :REM XEigFactor
+330 b%!4 = 5   :REM YEigFactor
+340 b%!8 = 11  :REM XWindLimit
+350 b%!12 = 12 :REM YWindLimit
+355 b%!16 = -1
+360 SYS "OS_ReadVduVariables", b%, b%
+380 maxX% = b%!8 << b%!0
+390 maxY% = b%!12 << b%!4
+400 ENDPROC
+RUN
