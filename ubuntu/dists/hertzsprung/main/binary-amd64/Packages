@@ -1,0 +1,32 @@
+Package: asam-gridgen
+Version: 1.1-0ubuntu1
+Architecture: amd64
+Maintainer: James Shaw <js102@zepler.net>
+Installed-Size: 655
+Depends: libc6 (>= 2.2.5), libgcc1 (>= 1:4.1.1), libgfortran3 (>= 4.6)
+Priority: optional
+Section: science
+Filename: pool/main/a/asam-gridgen/asam-gridgen_1.1-0ubuntu1_amd64.deb
+Size: 138436
+SHA256: f4457c222158f9ecfc93f3f8ff53a23a9bc5bfba3ded53bd730e9e8ee0d27ff4
+SHA1: 2a5e5224d1cf97da2039ab450e83074a63554f6e
+MD5sum: 22aaf1a157c7b9684df471337f73a201
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>
+
+Package: gmv2openfoam
+Version: 1.0-0ubuntu1
+Architecture: amd64
+Maintainer: James Shaw <js102@zepler.net>
+Installed-Size: 125
+Depends: libc6 (>= 2.4), python3 (>= 3.4.0), python3-numpy (>= 1.8.2)
+Priority: optional
+Section: science
+Filename: pool/main/g/gmv2openfoam/gmv2openfoam_1.0-0ubuntu1_amd64.deb
+Size: 29670
+SHA256: 841e1bc342cc78fbdbf6698d5e476caa015fcc61ba7820ac85796e74977a5b75
+SHA1: 1bdd9361fb176fd4b6534d865893b9d610f942a0
+MD5sum: 5986ad71adb5e833993e54c5b968b1dd
+Description: Convert GMV meshes to OpenFOAM meshes
+ <insert long description, indented with spaces>
+
