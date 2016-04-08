@@ -61,6 +61,7 @@ article {
 	text-align: justify;
 	line-height: 1.35;
 	margin-bottom: 3em;
+	overflow: auto;
 }
 
 article h1,
@@ -95,6 +96,11 @@ article dd {
 
 article dt {
 	text-align: left;
+}
+
+article .float-right {
+	float: right;
+	margin: 1em;
 }
 
 article figcaption {
