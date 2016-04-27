@@ -1,0 +1,16 @@
+---
+layout: post
+title:  "OpenFOAM on Ubuntu 16.04"
+date:   2016-04-27 08:18:00
+---
+<p>If you want to use the <a href="http://www.openfoam.org/">OpenFOAM</a> 3 on <a href="https://wiki.ubuntu.com/XenialXerus/ReleaseNotes">Ubuntu 16.04 Xenial Xerus</a>, there is <a href="http://www.openfoam.org/mantisbt/view.php?id=2070">no binary package in the OpenFOAM repository</a> at the time of writing.</p>
+
+<p>The source build takes many hours to complete, so you might prefer to workaround the issue as I did:
+<ol>
+  <li>Install the dependencies: <pre>sudo apt-get install libopenmpi1.10 csh libscotch-5.1 binutils-dev libscotch-dev libptscotch-5.1</pre></li>
+  <li>Assuming you have a 64-bit architecture, download the binary package for <a href="https://wiki.ubuntu.com/WilyWerewolf/ReleaseNotes">Ubuntu 15.10 Wily Werewolf</a>: <pre>wget -O openfoam30_1-1_amd64.deb https://sourceforge.net/projects/foam/files/foam/ubuntu/dists/wily/main/binary-amd64/openfoam30_1-1_amd64.deb/download</pre></li>
+  <li>This package depends upon <a href="https://launchpad.net/ubuntu/+source/openmpi"><code>libopenmpi1.6</code></a> which no longer exists in Ubuntu 16.04, so we must coax OpenFOAM into using the new version.  Install the downloaded binary with <pre>sudo dpkg --ignore-depends=libopenmpi1.6 -i openfoam30_1-1_amd64.deb</pre></li>
+  <li>Finally, ensure that <code>libmpi</code> is in the expected place: <pre>sudo ln -s /usr/lib/libmpi.so /usr/lib/libmpi.so.1</pre></li>
+</ol>
+I haven't tested that this installation works with parallel execution, but it's enough to get OpenFOAM running.
+</p>
