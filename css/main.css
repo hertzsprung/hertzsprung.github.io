@@ -29,6 +29,7 @@ p.meta {
 }
 
 pre {
+	text-align: left;
 	white-space: pre-wrap;
 	background: #EEE;
 	margin: 0.2em;
