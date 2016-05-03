@@ -1,0 +1,13 @@
+.axis path,
+.axis line {
+	stroke: grey;
+	stroke-width: 1;
+	fill: none;
+}
+
+path {
+	stroke: steelblue;
+	stroke-width: 2;
+	fill: none;
+}
+
