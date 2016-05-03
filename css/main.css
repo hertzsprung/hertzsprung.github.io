@@ -28,6 +28,14 @@ p.meta {
 	margin-top: 0;
 }
 
+pre {
+	text-align: left;
+	white-space: pre-wrap;
+	background: #EEE;
+	margin: 0.2em;
+	padding: 0.3em;
+}
+
 todo {
 	display: none;
 }
