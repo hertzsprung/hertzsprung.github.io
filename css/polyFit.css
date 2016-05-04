@@ -5,8 +5,7 @@
 	fill: none;
 }
 
-path {
-	stroke: steelblue;
+path.cubic, path.quad {
 	stroke-width: 2;
 	fill: none;
 }
