@@ -10,7 +10,10 @@ extra_script:
 ---
 <p>This demonstration shows quadratic and cubic polynomials fitted through a set of points using a least squares approach.  This technique generalises to higher dimensions and can be used as an interpolation function for solving the flux form <a href="https://en.wikipedia.org/wiki/Advection#The_advection_equation">advection equation</a> on arbitrary meshes.</p>
 
-<p>Drag points to change the fit.  Control-drag points to change weights.  The polynomial is fitted almost exactly through the filled points and inexactly through the open points.</p>
+<p>Drag points to change the fit.  Control-drag points to change weights.  The polynomial is fitted almost exactly through the filled points (which have large weights) and inexactly through the open points (which have small weights).</p>
+
+<p>Coefficients are displayed next to each point with a colour corresponding to the quadratic and cubic curves.  These coefficients are multiplied by the \(y\)-values at each point to calculate the interpolated value where the curve intersects the \(y\)-axis.
+
 <div id="graph"></div>
 <div>
   <div id="pointdump"></div>
