@@ -56,3 +56,19 @@ function pinv(A) {
   for(i=M-1;i!==-1;i--) { if(S[i]>tol) Sinv[i] = 1/S[i]; else Sinv[i] = 0; }
   return numeric.dot(numeric.dot(V,numeric.diag(Sinv)),numeric.transpose(U))
 }
+
+function format(a) {
+  return Math.round(a*100)/100;
+}
+
+function approximate(domain, f) {
+  var N = 100;
+  var dx = (domain[1] - domain[0]) / N;
+
+  var data = [];
+  for (var i = 0; i <= N; i++) {
+    var x = domain[0] + i*dx;
+    data.push({x: x, y: f(x)});
+  }
+  return data;
+}

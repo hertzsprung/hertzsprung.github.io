@@ -12,40 +12,17 @@ function uniformDomain(width, divisions) {
   for (var i=0; i < divisions+1; i++) {
     faces.push(i*dx);
   }
-
-  return calculateCellCentres(simulation);
-}
-
-function calculateCellCentres(simulation) {
-  var T = simulation.frames[0].T;
-  T.length = 0;
-  var faces = simulation.faces;
-
-  for (var i=0; i < faces.length - 1; i++) {
-    T.push({x: 0.5*(faces[i] + faces[i+1])});
-  }
-
   return simulation;
 }
 
 function sineWave(simulation, k) {
-  k *= 2*Math.PI;
+  simulation.generator = function(T) {
+    k *= 2*Math.PI;
 
-  var T = simulation.frames[0].T;
-
-  for (var i=0; i < T.length; i++) {
-    T[i].y = Math.sin(k*T[i].x);
-  }
-
-  return simulation;
-}
-
-function hat(simulation) {
-  var T = simulation.frames[0].T;
-
-  for (var i=0; i < T.length; i++) {
-    T[i].y = (T[i].x < 0.5) ? 0 : 1;
-  }
+    for (var i=0; i < T.length; i++) {
+      T[i].y = Math.sin(k*T[i].x);
+    }
+  };
 
   return simulation;
 }
@@ -54,6 +31,10 @@ function simulate(simulation, interpolator, endTime, dt, u) {
   simulation.interpolator = interpolator;
   simulation.u = u;
   simulation.dt = dt;
+
+  calculateCellCentres(simulation);
+  simulation.generator(simulation.frames[0].T);
+
   simulation.maxCourant = maxCourant(simulation);
 
   var t = dt;
@@ -69,15 +50,32 @@ function simulate(simulation, interpolator, endTime, dt, u) {
   return simulation;
 }
 
+function calculateCellCentres(simulation) {
+  var T = simulation.frames[0].T;
+  T.length = 0;
+  var faces = simulation.faces;
+
+  for (var i=0; i < faces.length - 1; i++) {
+    T.push({x: 0.5*(faces[i] + faces[i+1])});
+  }
+
+  return simulation;
+}
+
 function forwardStep(simulation) {
   var T_old = simulation.frames[simulation.frames.length - 1].T;
   var T = T_old.slice();
 
   for (var i=0; i < T.length; i++) {
+    var fluxL = flux(T_old, i-1, i-3, i, simulation);
+    var fluxR = flux(T_old, i, i-2, i+1, simulation);
 
-    T[i] = { x: T_old[i].x, y: T_old[i].y - courant(simulation, i) * (
-        flux(T_old, i, i-2, i+1, simulation) - 
-        flux(T_old, i-1, i-3, i, simulation))};
+    T[i] = { 
+      x: T_old[i].x,
+      y: T_old[i].y - courant(simulation, i) * (fluxR.value - fluxL.value),
+      fluxL: fluxL,
+      fluxR: fluxR
+    };
   }
 
   return T;
@@ -107,7 +105,14 @@ function flux(T, upwindOriginIndex, start, end, simulation) {
   }
   stencil = localise(stencil, start, upwindOriginIndex, simulation);
   weights = [1e3, 1e3, 1, 1];
-  return numeric.dot(values(stencil), fit(stencil, simulation.interpolator, weights).coefficients);
+  var polyFit = fit(stencil, simulation.interpolator, weights);
+
+  return {
+    value: numeric.dot(values(stencil), polyFit.coefficients),
+    polynomial: polyFit.polynomial,
+    stencil: stencil,
+    coefficients: polyFit.coefficients
+  };
 }
 
 function localise(T, startIndex, upwindOriginIndex, simulation) {
