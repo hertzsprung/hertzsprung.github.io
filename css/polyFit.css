@@ -1,0 +1,57 @@
+.axis path,
+.axis line {
+	stroke: grey;
+	stroke-width: 1;
+	fill: none;
+}
+
+path.cubic, path.quad {
+	stroke-width: 2;
+	fill: none;
+}
+
+path.cubic {
+	stroke: steelblue;
+}
+
+text.cubic {
+	fill: steelblue;
+}
+
+path.quad {
+	stroke: orangered;
+}
+
+text.quad {
+	fill: orangered;
+	text-anchor: end;
+}
+
+.central {
+	fill: black;
+	stroke: black;
+	stroke-width: 3;
+}
+
+.peripheral {
+	fill: white;
+	stroke: black;
+	stroke-width: 3;
+}
+
+#pointdump,
+#weightdump {
+	font-family: monospace;
+	display: inline-block;
+	border: 1px black solid;
+	padding: 1em;
+	width: 20em;
+}
+
+#pointdump:before {
+	content: "# points";
+}
+
+#weightdump:before {
+	content: "# weights";
+}

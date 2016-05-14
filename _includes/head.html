@@ -9,8 +9,14 @@
 
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}"/>
     <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"/>
+    {% for css in page.extra_css %}
+      <link rel="stylesheet" href="{{ "/css/" | append: css | prepend: site.baseurl }}"/>
+    {% endfor %}
     <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Merriweather:400,400italic,300,700'/>
 
     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
     {% include googleanalytics.html %}
+    {% for script in page.extra_script %}
+      <script src="{{ script }}" type="text/javascript"></script>
+    {% endfor %}
 </head>
