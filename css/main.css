@@ -106,6 +106,19 @@ article dt {
 	text-align: left;
 }
 
+article figure {
+	border-top: 1pt solid #255187;
+	border-bottom: 1pt solid #255187;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+
+article img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 article .float-right {
 	float: right;
 	margin: 1em;
