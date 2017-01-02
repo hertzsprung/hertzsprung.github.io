@@ -7,7 +7,7 @@ date:   2017-01-01 12:00:00
 Recently, I have tried modifying the cubicFit transport scheme to obtain high-order convergence (that is, convergence greater than second-order).  
 Here I'll introduce a one-dimensional version of the cubicFit scheme and explain how it can be modified to obtain high-order convergence.  Then I'll describe the two-dimensional version of the cubicFit scheme and finish with an open question: can high-order convergence be obtained in two dimensions?</p>
 
-<h2>One-dimensional cubicFit</h2>
+<h2>One-dimensional finite volume approximation</h2>
 
 <p>To formulate the one-dimensional cubicFit transport scheme, I'll start from the transport equation for a dependent variable \(\phi\) assuming a non-negative velocity \(u\) that is constant in time and space,
 \begin{equation}
@@ -20,8 +20,8 @@ where the term on the right-hand side is called the <em>flux divergence</em>.  W
 where \(\phi_L\) and \(\phi_R\) are approximate values of \(\phi\) at the left and right faces respectively, and \(\Delta x\) is the distance between the faces.
 </p>
 <figure>
-  <img src="/images/cubicFit1D.png"/>
-  <figcaption>The one-dimensional cubicFit transport scheme approximates face values \(\phi_L\) and \(\phi_R\) using four-point, upwind-biased stencils of cell centre values.  Cell centres are marked by grey filled circles and faces are marked by black open circles.</figcaption>
+<img src="/images/cubicFit1D.png"/>
+<figcaption>The one-dimensional cubicFit transport scheme approximates face values \(\phi_L\) and \(\phi_R\) using four-point, upwind-biased stencils of cell centre values.  Cell centres are marked by grey filled circles and faces are marked by black open circles.</figcaption>
 </figure>
 <p>
 The cubicFit scheme approximates a face value using four neighbouring cell centre values, as shown above.  For each face, a cubic polynomial is found that interpolates the four data points,
@@ -31,129 +31,243 @@ The cubicFit scheme approximates a face value using four neighbouring cell centr
 By choosing a local coordinate with its origin at the face then the value of \(\phi\) at the face is just \(a_1\), which is calculated as follows.
 Assuming a uniform mesh with \(\Delta x = 1\) and choosing the position of \(\phi_{i+1/2}\) to be \(x=0\), equation \eqref{eqn:cubic} is evaluated at the cell centres \(\phi_{i-2}, \ldots, \phi_{i+1}\) to form the matrix equation
 \begin{align}
-	\mathbf{B} \mathbf{a} &amp;= \mathbf{\phi} \\
-	\begin{bmatrix}
-		1 &amp; -5/2 &amp; 25/4 &amp; -125/8 \\
-		1 &amp; -3/2 &amp;  9/4 &amp; -27/8 \\
-		1 &amp; -1/2 &amp;  1/4 &amp;  -1/8 \\
-		1 &amp;  1/2 &amp;  1/4 &amp;   1/8 \\
-	\end{bmatrix}
-	\begin{bmatrix}
-		a_1 \\
-		a_2 \\
-		a_3 \\
-		a_4
-	\end{bmatrix}
-	&amp;=
-	\begin{bmatrix}
-		\phi_{i-2} \\
-		\phi_{i-1} \\
-		\phi_i \\
-		\phi_{i+1}
-	\end{bmatrix} \text{.}
+\mathbf{B} \mathbf{a} &amp;= \mathbf{\phi} \\
+\begin{bmatrix}
+  1 &amp; -5/2 &amp; 25/4 &amp; -125/8 \\
+  1 &amp; -3/2 &amp;  9/4 &amp; -27/8 \\
+  1 &amp; -1/2 &amp;  1/4 &amp;  -1/8 \\
+  1 &amp;  1/2 &amp;  1/4 &amp;   1/8 \\
+\end{bmatrix}
+\begin{bmatrix}
+  a_1 \\
+  a_2 \\
+  a_3 \\
+  a_4
+\end{bmatrix}
+&amp;=
+\begin{bmatrix}
+  \phi_{i-2} \\
+  \phi_{i-1} \\
+  \phi_i \\
+  \phi_{i+1}
+\end{bmatrix} \text{.}
 \end{align}
 The unknown coefficients \(\mathbf{a}\) are found by inverting \(\mathbf{B}\) such that \(\mathbf{a} = \mathbf{B}^{-1} \mathbf{\phi}\).  The inverse matrix is
 \begin{align}
-	\mathbf{B}^{-1} = 
-	\frac{1}{48}
-	\begin{bmatrix}
-		3 &amp; -15 &amp; 45 &amp; 15 \\
-		2 &amp; -6 &amp; -42 &amp; 46 \\
-		-12 &amp; 60 &amp; -84 &amp; 36 \\
-		-8 &amp; 24 &amp; -24 &amp; 8
-	\end{bmatrix} \label{eqn:cubicfit-inverse}
+\mathbf{B}^{-1} = 
+\frac{1}{48}
+\begin{bmatrix}
+  3 &amp; -15 &amp; 45 &amp; 15 \\
+  2 &amp; -6 &amp; -42 &amp; 46 \\
+  -12 &amp; 60 &amp; -84 &amp; 36 \\
+  -8 &amp; 24 &amp; -24 &amp; 8
+\end{bmatrix} \label{eqn:cubicfit-inverse}
 \end{align}
 Since \(x=0\) was chosen to be the position \(i+1/2\) then 
 \begin{align}
-	\phi_{i+1/2} = a_1 = 
-	\frac{1}{16}
-	\begin{bmatrix}
-		1 \\ -5 \\ 15 \\ 5
-	\end{bmatrix}
-	\cdot
-	\begin{bmatrix}
-		\phi_{i-2} \\
-		\phi_{i-1} \\
-		\phi_i \\
-		\phi{i+1}
-	\end{bmatrix} \text{.} \label{eqn:cubicfit-fluxcoeffs}
+\phi_{i+1/2} = a_1 = 
+\frac{1}{16}
+\begin{bmatrix}
+  1 \\ -5 \\ 15 \\ 5
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+  \phi_{i-2} \\
+  \phi_{i-1} \\
+  \phi_i \\
+  \phi{i+1}
+\end{bmatrix} \text{.} \label{eqn:cubicfit-fluxcoeffs}
 \end{align}
 </p>
 
-<h2>A high-order correction</h2>
-To obtain a high-order version of the one-dimensional cubicFit transport scheme we return to the flux divergence term on the right-hand side of equation \eqref{eqn:transport} and discretise it using the finite difference method.  
+<h2>One-dimensional finite difference approximation</h2>
+<p>
+To obtain a high-order version of the one-dimensional cubicFit transport scheme I return to the flux divergence term on the right-hand side of equation \eqref{eqn:transport} and discretise it using the finite difference method.  
 Using this method, the flux divergence of cell \(i\) is calculated using a cubic approximation using cell centre values \(\phi_{i-2}, \ldots, \phi_{i+1}\).  A matrix equation is constructed using equation \eqref{eqn:cubic} evaluated at every cell centre.  For convenience, assume that \(\Delta x = 1\) and that \(x=0\) at the cell centre position of \(\phi_i\), hence the matrix equation becomes
 \begin{align}
-	\mathbf{B} \mathbf{a} &= \mathbf{\phi} \\
-	\begin{bmatrix}
-		1 &amp; -2 &amp; 4 &amp; -8 \\
-		1 &amp; -1 &amp; 1 &amp; -1 \\
-		1 &amp;  0 &amp; 0 &amp;  0\\
-		1 &amp;  1 &amp; 1 &amp;  1\\
-	\end{bmatrix}
-	\begin{bmatrix}
-		a_1 \\
-		a_2 \\
-		a_3 \\
-		a_4
-	\end{bmatrix}
-	&amp;=
-	\begin{bmatrix}
-		\phi_{i-2} \\
-		\phi_{i-1} \\
-		\phi_i \\
-		\phi_{i+1}
-	\end{bmatrix}
+\mathbf{B} \mathbf{a} &= \mathbf{\phi} \\
+\begin{bmatrix}
+  1 &amp; -2 &amp; 4 &amp; -8 \\
+  1 &amp; -1 &amp; 1 &amp; -1 \\
+  1 &amp;  0 &amp; 0 &amp;  0\\
+  1 &amp;  1 &amp; 1 &amp;  1\\
+\end{bmatrix}
+\begin{bmatrix}
+  a_1 \\
+  a_2 \\
+  a_3 \\
+  a_4
+\end{bmatrix}
+&amp;=
+\begin{bmatrix}
+  \phi_{i-2} \\
+  \phi_{i-1} \\
+  \phi_i \\
+  \phi_{i+1}
+\end{bmatrix}
 \end{align}
 The unknown coefficients \(\mathbf{a}\) are found by calculating the inverse matrix,
 \begin{align}
-	\mathbf{B}^{-1} = 
-	\frac{1}{6}
-	\begin{bmatrix}
-		0 &amp; 0 &amp; 6 &amp; 0 \\
-		1 &amp; -6 &amp; 3 &amp; 2 \\
-		0 &amp; 3 &amp; -6 &amp; 3 \\
-		-1 &amp; 3 &amp; -3 &amp; 1
-  \end{bmatrix} \text{.}
+\mathbf{B}^{-1} = 
+\frac{1}{6}
+\begin{bmatrix}
+  0 &amp; 0 &amp; 6 &amp; 0 \\
+  1 &amp; -6 &amp; 3 &amp; 2 \\
+  0 &amp; 3 &amp; -6 &amp; 3 \\
+  -1 &amp; 3 &amp; -3 &amp; 1
+\end{bmatrix} \text{.}
 \end{align}
 To calculate the flux divergence I calculate the derivative \(\partial \phi / \partial x = a_2 + 2 a_3 x + 3 a_4 x^2\).  Evaluating the flux divergence at \(\phi_i\) where \(x=0\) then \(\partial \phi_i / \partial x = a_2\).  Hence I find that the finite difference weighted sum is
 \begin{align}
-	-u \frac{\partial \phi_i}{\partial x} = -u a_2 =
-	-u \cdot \frac{1}{6}
-	\begin{bmatrix}
-		1 \\ -6 \\ 3 \\ 2
-	\end{bmatrix}
-	\cdot
-	\begin{bmatrix}
-		\phi_{i-2} \\
-		\phi_{i-1} \\
-		\phi_i \\
-		\phi_{i+1}
-	\end{bmatrix} \label{eqn:fd-fluxdiv}
+-u \frac{\partial \phi_i}{\partial x} = -u a_2 =
+-u \cdot \frac{1}{6}
+\begin{bmatrix}
+  1 \\ -6 \\ 3 \\ 2
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+  \phi_{i-2} \\
+  \phi_{i-1} \\
+  \phi_i \\
+  \phi_{i+1}
+\end{bmatrix} \label{eqn:fd-fluxdiv}
 \end{align}
 The cubic finite difference approximation given in equation \eqref{eqn:fd-fluxdiv} is conservative on uniform meshes.  This can be demonstrated by decomposing the weights vector,
 \begin{align}
-	-u \cdot \frac{1}{6}
-	\begin{bmatrix}
-		1 \\ -6 \\ 3 \\ 2
-	\end{bmatrix}
+-u \cdot \frac{1}{6}
+\begin{bmatrix}
+  1 \\ -6 \\ 3 \\ 2
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+  \phi_{i-2} \\
+  \phi_{i-1} \\
+  \phi_i \\
+  \phi_{i+1}
+\end{bmatrix}
+&amp;= 
+-u \cdot
+\frac{1}{6}
+\left(
+\begin{bmatrix}
+  0 \\ -1 \\ 5 \\ 2
+\end{bmatrix}
+-
+\begin{bmatrix}
+  -1 \\ 5 \\ 2 \\ 0
+\end{bmatrix}
+\right)
+\cdot
+\begin{bmatrix}
+  \phi_{i-2} \\
+  \phi_{i-1} \\
+  \phi_i \\
+  \phi_{i+1}
+\end{bmatrix} \\
+&amp;=
+-u \left(
+\frac{1}{6}
+\begin{bmatrix}
+  -1 \\ 5 \\ 2
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+  \phi_{i-1} \\
+  \phi_i \\
+  \phi_{i+1}
+\end{bmatrix}
+-
+\frac{1}{6}
+\begin{bmatrix}
+  -1 \\ 5 \\ 2
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+  \phi_{i-2} \\
+  \phi_{i-1} \\
+  \phi_i
+\end{bmatrix} \right) \text{.} \label{eqn:fd-fluxcoeffs}
+\end{align}
+Notice that the flux divergence has been rewritten as the difference between right and left fluxes as in equation \eqref{eqn:fluxdiv}.
+
+<h2>High-order correction in one dimension</h2>
+The high-order correction to the cubicFit scheme is calculated as the difference between the cubic finite difference approximation (equation \ref{eqn:fd-fluxcoeffs}) and the uncorrected cubicFit approximation (equation \ref{eqn:cubicfit-fluxcoeffs}),
+\begin{align}
+\mathrm{correction}(\phi_{i+1/2})
+&amp;=
+\left(
+\frac{1}{6} 
+\begin{bmatrix}
+  0 \\ -1 \\ 5 \\ 2
+\end{bmatrix}
+-
+\frac{1}{16}
+\begin{bmatrix}
+  1 \\ -5 \\ 15 \\ 5
+\end{bmatrix}
+\right)
+\cdot
+\begin{bmatrix}
+  \phi_{i-2} \\
+  \phi_{i-1} \\
+  \phi_i \\
+  \phi_{i+1}
+\end{bmatrix} \\
+&amp;=
+\frac{1}{48}
+\begin{bmatrix}
+  -3 \\ 7 \\ -5 \\ 1
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+  \phi_{i-2} \\
+  \phi_{i-1} \\
+  \phi_i \\
+  \phi_{i+1}
+\end{bmatrix} \label{eqn:correction}
+\end{align}
+which can be decomposed into a linear combination of second derivatives where \(\partial_x^2 \phi_i = \phi_{i-1} - 2 \phi_i + \phi_{i+1}\),
+\begin{align}
+&amp;=
+\frac{1}{48} \left(
+-3 \begin{bmatrix}1 \\ -2 \\ 1 \\ 0\end{bmatrix}
++ \begin{bmatrix}0 \\ 1 \\ -2 \\ 1\end{bmatrix}
+\right)
+\cdot
+\begin{bmatrix}
+  \phi_{i-2} \\
+  \phi_{i-1} \\
+  \phi_i \\
+  \phi_{i+1}
+\end{bmatrix} \\
+&amp;=
+\frac{1}{48}
+\left( -3 \partial_x^2 \phi_{i-1} + \partial_x^2 \phi_i \right) \text{.}
+\end{align}
+Applying this correction using the three-point approximation of the second derivative results in third-order convergence on uniform meshes and second-order convergence on non-uniform meshes.
+</p>
+<figure>
+  <img src=/images/cubicFitConvergence.png"/>
+  <figcaption>Convergence of uncorrected and corrected versions of the one-dimensional cubicFit transport scheme.
+    <todo>explain results a bit more</todo>
+    A single sine wave is transported once around a periodic domain.  The \(\ell_2\) error is calculated as \(\ell_2 = \sqrt{\sum_i{\left(\phi_i - \phi_i^T\right)^2 \Delta x_i} / \sum_i{\left(\phi_i^T\right)^2 \Delta x_i}}\) where \(\phi\) is the numeric solution and \(\phi_T\) is the analytic solution.  <todo>where to get the code</todo></figcaption>
+</figure>
+<p>
+Alternatively, the second derivative can be calculated from equation \eqref{eqn:cubic} such that \(\partial_x^2 \phi = 2a_3 + 6a_4x\) where \(a_3\) and \(a_4\) can be calculated using equation \eqref{eqn:cubicfit-inverse}.  This approach results in fourth-order convergence on uniform meshes and second-order convergence on non-uniform meshes.
+Curiously, this approach yields the correction
+\begin{align}
+	\mathrm{correction}(\phi_{i+1/2})
+	&amp;=
+	\frac{1}{48}
+	\left(
+	-3
 	\cdot
 	\begin{bmatrix}
-		\phi_{i-2} \\
-		\phi_{i-1} \\
-		\phi_i \\
-		\phi_{i+1}
+		0 \\ 1 \\ -2 \\ 1
 	\end{bmatrix}
-	&amp;= 
-	-u \cdot
-	\frac{1}{6}
-	\left(
+	+
 	\begin{bmatrix}
-		0 \\ -1 \\ 5 \\ 2
-	\end{bmatrix}
-	-
-	\begin{bmatrix}
-		-1 \\ 5 \\ 2 \\ 0
+		-1 \\ 4 \\ -5 \\ 2
 	\end{bmatrix}
 	\right)
 	\cdot
@@ -164,27 +278,52 @@ The cubic finite difference approximation given in equation \eqref{eqn:fd-fluxdi
 		\phi_{i+1}
 	\end{bmatrix} \\
 	&amp;=
-	-u \left(
-	\frac{1}{6}
-	\begin{bmatrix}
-		-1 \\ 5 \\ 2
-	\end{bmatrix}
+	\frac{1}{48}
 	\cdot
 	\begin{bmatrix}
-		\phi_{i-1} \\
-		\phi_i \\
-		\phi_{i+1}
-	\end{bmatrix}
-	-
-	\frac{1}{6}
-	\begin{bmatrix}
-		-1 \\ 5 \\ 2
+		-1 \\ 1 \\ 1 \\ -1
 	\end{bmatrix}
 	\cdot
 	\begin{bmatrix}
 		\phi_{i-2} \\
 		\phi_{i-1} \\
-		\phi_i
-	\end{bmatrix} \right) \text{.} \label{eqn:fd-fluxcoeffs}
+		\phi_i \\
+		\phi_{i+1}
+	\end{bmatrix}
+	=
+	\frac{1}{48}
+	\left(
+	\begin{bmatrix}
+		-1 \\ 2 \\ -1 \\ 0
+	\end{bmatrix}
+	+
+	\begin{bmatrix}
+		0 \\ -1 \\ 2 \\ -1
+	\end{bmatrix}
+	\right)
+	\cdot
+	\begin{bmatrix}
+		\phi_{i-2} \\
+		\phi_{i-1} \\
+		\phi_i \\
+		\phi_{i+1}
+	\end{bmatrix} \\
+	&amp;=
+	-\frac{1}{48} \left( \partial_x^2 \phi_{i-1} + \partial_x^2 \phi_i \right)
+	\cdot
+	\begin{bmatrix}
+		\phi_{i-2} \\
+		\phi_{i-1} \\
+		\phi_i \\
+		\phi_{i+1}
+	\end{bmatrix} \text{.}
 \end{align}
-Notice that the flux divergence has been rewritten as the difference between right and left fluxes as in equation \eqref{eqn:fluxdiv}.
+</p>
+
+<h2>Two-dimensional cubicFit</h2>
+<todo>explain cubicFit in 2D, explain why the correction is not obvious</todo>
+
+<h2>References</h2>
+<todo>Sch&auml;r et al. 2002</todo>
+<todo>Prather?</todo>
+<todo>Skamarock and Gassmann 2011</todo>
