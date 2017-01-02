@@ -107,10 +107,14 @@ article dt {
 }
 
 article figure {
-	border-top: 1pt solid #255187;
-	border-bottom: 1pt solid #255187;
+	border-top: 1pt solid #CEE2EB;
+	border-bottom: 1pt solid #CEE2EB;
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
+}
+
+article figcaption {
+	margin-top: 0.5em;
 }
 
 article img {
