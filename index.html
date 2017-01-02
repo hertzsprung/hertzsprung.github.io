@@ -13,9 +13,9 @@ layout: default
 {% if paginator.total_pages > 1 %}
   <p class="pagination">
     {% if paginator.previous_page %}
-      <a href="{{ paginator.previous_page_path }}">Previous</a>
+      <a href="{{ paginator.previous_page_path }}">&#9664; Previous</a>
     {% else %}
-      Previous
+      &#9664; Previous
     {% endif %}
 
     {% for page in (1..paginator.total_pages) %}
@@ -29,9 +29,9 @@ layout: default
     {% endfor %}
 
     {% if paginator.next_page %}
-      <a href="{{ paginator.next_page_path }}">Next</a>
+      <a href="{{ paginator.next_page_path }}">Next &#9654;</a>
     {% else %}
-      Next
+      Next &#9654;
     {% endif %}
   </p>
 {% endif %}
