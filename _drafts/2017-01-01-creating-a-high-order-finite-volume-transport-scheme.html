@@ -247,7 +247,7 @@ which can be decomposed into a linear combination of second derivatives where \(
 Applying this correction using the three-point approximation of the second derivative results in third-order convergence on uniform meshes and second-order convergence on non-uniform meshes.
 </p>
 <figure>
-  <img src=/images/cubicFitConvergence.png"/>
+  <img src="/images/cubicFitConvergence.png"/>
   <figcaption>Convergence of uncorrected and corrected versions of the one-dimensional cubicFit transport scheme.
     <todo>explain results a bit more</todo>
     A single sine wave is transported once around a periodic domain.  The \(\ell_2\) error is calculated as \(\ell_2 = \sqrt{\sum_i{\left(\phi_i - \phi_i^T\right)^2 \Delta x_i} / \sum_i{\left(\phi_i^T\right)^2 \Delta x_i}}\) where \(\phi\) is the numeric solution and \(\phi_T\) is the analytic solution.  <todo>where to get the code</todo></figcaption>
