@@ -247,13 +247,13 @@ which can be decomposed into a linear combination of second derivatives where \(
 Applying this correction using the three-point approximation of the second derivative results in third-order convergence on uniform meshes and second-order convergence on non-uniform meshes.
 </p>
 <figure>
-  <img src="/images/cubicFitConvergence.png"/>
+  <img src="/images/cubicFitConvergence.svg"/>
   <figcaption>Convergence of uncorrected and corrected versions of the one-dimensional cubicFit transport scheme.
     <todo>explain results a bit more</todo>
     A single sine wave is transported once around a periodic domain.  The \(\ell_2\) error is calculated as \(\ell_2 = \sqrt{\sum_i{\left(\phi_i - \phi_i^T\right)^2 \Delta x_i} / \sum_i{\left(\phi_i^T\right)^2 \Delta x_i}}\) where \(\phi\) is the numeric solution and \(\phi_T\) is the analytic solution.  <todo>where to get the code</todo></figcaption>
 </figure>
 <p>
-Alternatively, the second derivative can be calculated from equation \eqref{eqn:cubic} such that \(\partial_x^2 \phi = 2a_3 + 6a_4x\) where \(a_3\) and \(a_4\) can be calculated using equation \eqref{eqn:cubicfit-inverse}.  This approach results in fourth-order convergence on uniform meshes and second-order convergence on non-uniform meshes.
+Alternatively, the second derivative can be calculated from equation \eqref{eqn:cubic} such that \(\partial_x^2 \phi = 2a_3 + 6a_4x\) where \(a_3\) and \(a_4\) can be calculated using equation \eqref{eqn:cubicfit-inverse}.  This approach results in fourth-order convergence on uniform meshes and second-order convergence on non-uniform meshes, as seen in the convergence plot above.
 Curiously, this approach yields the correction
 \begin{align}
 	\mathrm{correction}(\phi_{i+1/2})
@@ -321,7 +321,14 @@ Curiously, this approach yields the correction
 </p>
 
 <h2>Two-dimensional cubicFit</h2>
-<todo>explain cubicFit in 2D, explain why the correction is not obvious</todo>
+<p>
+The one-dimensional version of cubicFit exactly interpolates four data points with a cubic polynomial.  However, on a two-dimensional mesh of rectangular cells, the stencil has four points in the \(x\) direction and three points in the \(y\) direction for a total of twelve data points.  The multidimensional polynomial is then
+$$
+\phi = a_1 + a_2 x + a_3 y + a_4 x^2 + a_5 xy + a_6 y^2 + a_7 x^3 + a_8 x^2 y + a_9 x y^2 \text{.}
+$$
+Hence, we have an overconstrained system of equations with twelve data points and nine unknown coefficients \(a_1 \ldots a_9\) which is solved using a least-squares approach.
+</p>
+<p>In two dimensions, it is no longer clear to me how to formulate a high-order correction.  Skamarock and Gassmann 2011 used their one-dimensional high-order correction in two dimensions by applying it at each cell face...
 
 <h2>References</h2>
 <todo>Sch&auml;r et al. 2002</todo>
