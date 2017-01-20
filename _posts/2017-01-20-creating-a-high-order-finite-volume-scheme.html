@@ -1,11 +1,11 @@
 ---
 layout: post
 title:  "Creating a high-order finite volume transport scheme"
-date:   2017-01-01 12:00:00
+date:   2017-01-20 17:00:00
 ---
 <p>Over the last year of my PhD I have been working to create a finite volume transport scheme, called &lsquo;cubicFit&rsquo;, that is second-order convergent on arbitrary meshes.
-Recently, I have tried modifying the cubicFit transport scheme to obtain high-order convergence (that is, convergence greater than second-order).  
-Here I'll introduce a one-dimensional version of the cubicFit scheme and explain how it can be modified to obtain high-order convergence.  Then I'll describe the two-dimensional version of the cubicFit scheme and finish with an open question: can high-order convergence be obtained in two dimensions?</p>
+Recently, I have tried modifying the cubicFit transport scheme to obtain high-order convergence: that is, convergence greater than second-order.  
+Here I'll introduce a one-dimensional version of the cubicFit scheme and explain how it can be modified to obtain high-order convergence.</p>
 
 <h2>One-dimensional finite volume approximation</h2>
 
@@ -249,8 +249,8 @@ Applying this correction using the three-point approximation of the second deriv
 <figure>
   <img src="/images/cubicFitConvergence.svg"/>
   <figcaption>Convergence of uncorrected and corrected versions of the one-dimensional cubicFit transport scheme.
-    <todo>explain results a bit more</todo>
-    A single sine wave is transported once around a periodic domain.  The \(\ell_2\) error is calculated as \(\ell_2 = \sqrt{\sum_i{\left(\phi_i - \phi_i^T\right)^2 \Delta x_i} / \sum_i{\left(\phi_i^T\right)^2 \Delta x_i}}\) where \(\phi\) is the numeric solution and \(\phi_T\) is the analytic solution.  <todo>where to get the code</todo></figcaption>
+    A single sine wave is transported once around a periodic domain.  The \(\ell_2\) error is calculated as \(\ell_2 = \sqrt{\sum_i{\left(\phi_i - \phi_i^T\right)^2 \Delta x_i} / \sum_i{\left(\phi_i^T\right)^2 \Delta x_i}}\) where \(\phi\) is the numeric solution and \(\phi_T\) is the analytic solution.
+    The <a href="https://github.com/hertzsprung/skamarock-gassmann2011-transport">python source code is available on github</a>.</figcaption>
 </figure>
 <p>
 Alternatively, the second derivative can be calculated from equation \eqref{eqn:cubic} such that \(\partial_x^2 \phi = 2a_3 + 6a_4x\) where \(a_3\) and \(a_4\) can be calculated using equation \eqref{eqn:cubicfit-inverse}.  This approach results in fourth-order convergence on uniform meshes and second-order convergence on non-uniform meshes, as seen in the convergence plot above.
@@ -320,7 +320,7 @@ Curiously, this approach yields the correction
 \end{align}
 </p>
 
-<h2>Two-dimensional cubicFit</h2>
+<h2>Can high-order be obtained in two dimensions?</h2>
 <p>
 The one-dimensional version of cubicFit exactly interpolates four data points with a cubic polynomial.  However, on a two-dimensional mesh of rectangular cells, the stencil has four points in the \(x\) direction and three points in the \(y\) direction for a total of twelve data points.  The multidimensional polynomial is then
 $$
@@ -328,9 +328,10 @@ $$
 $$
 Hence, we have an overconstrained system of equations with twelve data points and nine unknown coefficients \(a_1 \ldots a_9\) which is solved using a least-squares approach.
 </p>
-<p>In two dimensions, it is no longer clear to me how to formulate a high-order correction.  Skamarock and Gassmann 2011 used their one-dimensional high-order correction in two dimensions by applying it at each cell face...
+<p>In two dimensions, it is no longer clear to me how to formulate a high-order correction, but <a href="https://doi.org/10.1175/MWR-D-10-05056.1">Skamarock and Gassmann 2011</a> used their one-dimensional high-order correction in two dimensions by applying it at each cell face.  It seems to me that their approach could be applied to cubicFit, though I have yet to have success applying a high-order correction to the <a href="/publications/slant-cell-advection.pdf">OpenFOAM cubicFit implementation for arbitrarily-structured meshes</a>.  I hope to describe the features of this scheme in a future post.</p>
 
-<h2>References</h2>
-<todo>Sch&auml;r et al. 2002</todo>
-<todo>Prather?</todo>
-<todo>Skamarock and Gassmann 2011</todo>
+<h2>Further reading</h2>
+<ul>
+  <li><a href="https://doi.org/10.1175/1520-0493(2002)130<2459:ANTFVC>2.0.CO;2">A New Terrain-Following Vertical Coordinate Formulation for Atmospheric Prediction Models</a>, Sch&auml;r et al. 2002</li>
+  <li><a href="https://doi.org/10.1175/MWR-D-10-05056.1">Conservative Transport Schemes for Spherical Geodesic Grids: High-Order Flux Operators for ODE-Based Time Integration</a>, Skamarock and Gassmann 2011</li>
+</ul>
