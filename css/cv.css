@@ -1,0 +1,45 @@
+table.cv {
+	border-spacing: 1em 0.3em;
+}
+
+table.cv td {
+	vertical-align: baseline;
+}
+
+ul.cv, ul.cv-publications, ul.cv-contact {
+	list-style: none;
+	padding-left: 1.25em;
+}
+
+ul.cv-contact li {
+	margin: 0.1em;
+}
+
+ul.cv li {
+	white-space: pre-wrap;
+	-moz-tab-size: 14;
+	tab-size: 14;
+}
+
+table.cv td:nth-child(1),
+table.cv td:nth-child(2) {
+	white-space: pre;
+}
+
+table.cv tr.heading {
+	font-weight: bold;
+	color: #122741;
+}
+
+table.cv td.detail {
+	white-space: normal;
+}
+
+table.cv td.detail ul {
+	margin-top: 0;
+}
+
+strong {
+	font-weight: bold;
+	color: #122741;
+}
