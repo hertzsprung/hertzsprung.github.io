@@ -1,0 +1,24 @@
+section {
+	page-break-inside: avoid;
+}
+
+header.site,
+footer.site {
+	display: none !important;
+}
+
+body {
+	font-family: 'Merriweather', serif;
+	font-size: 10.5pt;
+	margin-top: 0;
+	max-width: 60em;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+article h2 {
+	margin-top: 0.6em;
+}

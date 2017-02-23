@@ -181,17 +181,14 @@ article h1 a:active {
 
 header.site nav ul { 
 	list-style: none;
-	padding-left: 0;
-	display: table;
+	display: flex;
+	flex-wrap: wrap;
 	margin: 0 auto;
-	text-align: center;
+	justify-content: center;
 }
 
 header.site nav li {
-	margin-left: 0.5em;
-	margin-right: 0.5em;
-	display:table-cell;
-	vertical-align: middle;
+	display:inline;
 	white-space: nowrap;
 }
 
@@ -204,20 +201,6 @@ header.site nav li:after {
 
 header.site nav li:last-child:after {
 	content:'';
-}
-
-header.site div.search {
-	width: 100%;
-	display: inline-block;
-	vertical-align: middle;
-}
-
-.gsc-search-box {
-	vertical-align: baseline;
-}
-
-input.gsc-search-button {
-	background-color: #255187 !important;
 }
 
 /* footer */

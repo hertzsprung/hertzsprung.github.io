@@ -31,5 +31,6 @@ relative_permalinks: false
 gems:
   - jekyll-paginate
   - jekyll-gist
+  - jekyll-redirect-from
 markdown: kramdown
 permalink: pretty

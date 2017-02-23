@@ -11,14 +11,18 @@ ul.cv, ul.cv-publications, ul.cv-contact {
 	padding-left: 1.25em;
 }
 
+ul.cv-contact {
+	margin: 0;
+}
+
 ul.cv-contact li {
 	margin: 0.1em;
 }
 
 ul.cv li {
 	white-space: pre-wrap;
-	-moz-tab-size: 14;
-	tab-size: 14;
+	-moz-tab-size: 28;
+	tab-size: 28;
 }
 
 table.cv td:nth-child(1),

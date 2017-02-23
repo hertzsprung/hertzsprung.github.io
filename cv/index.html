@@ -1,18 +1,25 @@
 ---
 layout: default
+title:  "Curriculum Vitae"
+redirect_from: "/publications/index.html"
 extra_css: cv.css
 ---
 <article>
 <h1>James Shaw</h1>
 
+<div class="two-col">
+<section>
 <ul class="cv-contact">
-  <li><a title="Email" href="mailto://{{ site.email }}">
-  <svg width="1.5em" height="1.5em" viewBox="0 1 16 15" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#122741" d="M0 4v8c0 0.55 0.45 1 1 1h12c0.55 0 1-0.45 1-1V4c0-0.55-0.45-1-1-1H1c-0.55 0-1 0.45-1 1z m13 0L7 9 1 4h12zM1 5.5l4 3L1 11.5V5.5z m1 6.5l3.5-3 1.5 1.5 1.5-1.5 3.5 3H2z m11-0.5L9 8.5l4-3v6z" />
-  </svg>
-  js102@zepler.net
-  </a></li>
-
+  <li>
+    <svg width="1.5em" height="1.5em" style="visibility: hidden" viewBox="0 0 335 276" xmlns="http://www.w3.org/2000/svg"></svg>
+    <a href="http://datumedge.co.uk/cv">datumedge.co.uk/cv</a></li>
+  <li>
+    <svg width="1.5em" height="1.5em" style="visibility: hidden" viewBox="0 0 335 276" xmlns="http://www.w3.org/2000/svg"></svg>
+    <a href="mailto://{{ site.email }}">{{ site.email }}</a></li>
+</ul>
+</section>
+<section>
+<ul class="cv-contact">
   <li><a title="Twitter" href="https://twitter.com/{{ site.twitter_username }}">
   <!-- https://raw.githubusercontent.com/johan/svg-cleanups/master/logos/twitter.svg -->
   <svg width="1.5em" height="1.5em" viewBox="0 0 335 276" fill="#3ba9ee" xmlns="http://www.w3.org/2000/svg">
@@ -29,7 +36,10 @@ extra_css: cv.css
   @hertzsprung
   </a></li>
 </ul>
+</section>
+</div>
 
+<section>
 <h2>Education</h2>
 <table class="cv">
   <tbody>
@@ -55,33 +65,52 @@ extra_css: cv.css
     <tr class="heading"><td>1994&ndash;2001</td><td>Torquay Boys&rsquo; Grammar School</td><td>A Level Mathematics (A), Physics (A), Music (A)</td></tr>
   </tbody>
 </table>
+</section>
 
+<section>
 <h2>Employment</h2>
-<p>I have worked with a range of software companies developing systems for commercial and government applications.</p>
+<p>I have worked with a range of software companies to develop systems for commercial and government applications.</p>
 <table class="cv">
   <tbody>
   <tr class="heading"><td>2011&ndash;2013</td><td>Shazam</td><td>Java server developer</td></tr>
   <tr><td colspan="3" class="detail">
     <ul>
       <li>Practised end-to-end test-driven development, pair programming and continuous deployment</li>
-      <li>Developed microservices and core infrastructure components using Amazon DynamoDB, redis, Lucene/Solr</li>
-      <li>Worked closely with product stakeholders, mobile app designers and service engineers</li>
+      <li>Developed REST microservices and core infrastructure components using Amazon DynamoDB, redis, MySQL, Lucene/Solr</li>
+      <li>Designed and conducted technical interviews with prospective team members</li>
     </ul>
   </td></tr>
   <tr class="heading"><td>2007&ndash;2011</td><td>NetDespatch</td><td>Software developer</td></tr>
+  <tr><td colspan="3" class="detail">
+    <ul>
+      <li>Refactored workflow system to allow automated testing of individual components</li>
+      <li>Extended MySQL database schemas to support new track-and-trace logistitics software</li>
+    </ul>
+  </td></tr>
   <tr class="heading"><td>2006&ndash;2007</td><td>Anite</td><td>Software developer</td></tr>
+  <tr><td colspan="3" class="detail">
+    <ul>
+      <li>Improved PostgreSQL database performance to prevent web application failures under concurrent load</li>
+      <li>Deployed new software releases to production servers</li>
+      <li>Regular contact with our customer service desk to prioritise bug fixes and manage requirements</li>
+    </ul>
+  </td></tr>
   <tr class="heading"><td>2005&ndash;2006</td><td>BuildOnline</td><td>Junior software developer</td></tr>
   <tr class="heading"><td>2001&ndash;2002</td><td>Acterna</td><td>Industrial trainee</td></tr>
   </tbody>
 </table>
+</section>
 
+<section>
 <h2>Publications</h2>
 <ul class="cv-publications">
   <li><strong>Shaw, J.</strong>, <a href="http://orcid.org/0000-0003-4553-7082">H. Weller</a>, <a href="http://orcid.org/0000-0002-7636-6872">J. Methven</a>, and T. Davies (2017) <em>A multidimensional method-of-lines transport scheme for atmospheric flows over steep terrain using arbitrary meshes</em>. Submitted to <a href="https://www.journals.elsevier.com/journal-of-computational-physics/">Journal of Computational Physics</a>. <code><a href="https://arxiv.org/abs/1702.00233">arXiv:1702.00233 [math.NA]</a></code></li>
   <li>Chen, Y., <a href="http://orcid.org/0000-0003-4553-7082">H. Weller</a>, S. Pring, and <strong>J. Shaw</strong> (2017) <em>Dimension splitting and a long time-step multi-dimensional scheme for atmospheric transport</em>. Submitted to <a href="http://onlinelibrary.wiley.com/journal/10.1002/(ISSN)1477-870X">Quarterly Journal of the Royal Meteorological Society</a>. <code><a href="https://arxiv.org/abs/1701.06907">arXiv:1701.06907 [math.NA]</a></code></li>
   <li><strong>Shaw, J.</strong> and <a href="http://orcid.org/0000-0003-4553-7082">H. Weller</a> (2016) <em>Comparison of terrain following and cut cell grids using a non-hydrostatic model</em>. <a href="https://www2.ametsoc.org/ams/index.cfm/publications/journals/monthly-weather-review/">Monthly Weather Review</a>. <code><a href="http://dx.doi.org/10.1175/MWR-D-15-0226.1">doi: 10.1175/MWR-D-15-0226.1</a></code></li>
 </ul>
+</section>
 
+<section>
 <h2>Teaching</h2>
 <table class="cv">
   <tbody>
@@ -101,7 +130,9 @@ extra_css: cv.css
     </td></tr>
   </tbody>
 </table>
+</section>
 
+<section>
 <h2>Workshops</h2>
 <table class="cv">
   <tbody>
@@ -114,13 +145,16 @@ extra_css: cv.css
   <tr><td>June 2015</td><td>Attendee</td><td><a href="http://www.met.reading.ac.uk/hoskins/">Hoskins@70, University of Reading</a></td></tr>
   <tr><td>June 2015</td><td>Participant</td><td><a href="http://www.met.reading.ac.uk/nercdtp/home/events/SCENARIO_Conference_June2015.pdf">SCENARIO Doctoral Training Programme conference, University of Surrey</a></td></tr>
   <tr><td>March 2015</td><td><a href="http://www.icms.org.uk/downloads/Galerkin/Shaw.pdf">Speaker</a></td><td><a href="http://www.icms.org.uk/workshop.php?id=334">Galerkin methods with applications in weather and climate forecasting, ICMS</a></td></tr>
-  <tr><td>October 2013</td><td>Exhibitor</td><td><a href="http://jaxlondonblog.tumblr.com/">JAX London</a></td></tr>
+  <tr><td>April 2013</td><td>Attendee</td><td>AWS Summit, London</td></tr>
+  <tr><td>March 2013</td><td>Exhibitor</td><td>Devoxx London</a></td></tr>
   <tr><td>November 2012</td><td>Participant</td><td>Rewired State: Parliament 2012 hack weekend</td></tr>
   <tr><td>June 2012</td><td>Participant</td><td><a href="https://www.meetup.com/Londonjavacommunity/events/70388732/">Java 8 lambda hack day, London Java Community</a></td></tr>
   <tr><td>October 2011</td><td>Attendee</td><td><a href="https://blogs.oracle.com/javaone/javaone-2011-2">Oracle JavaOne</a></td></tr>
   </tbody>
 </table>
+</section>
 
+<section>
 <h2>Informal talks</h2>
 <ul class="cv">
   <li>November 2016&#9;<a href="https://doi.org/10.6084/m9.figshare.4509110.v1">Replicating computational atmospheric science</a></li>
@@ -130,14 +164,18 @@ extra_css: cv.css
   <li>April 2015&#9;<a href="../talks/discrete-vector-calculus-c-grid.pdf">Discrete vector calculus on Arakawa C grids</a></li>
   <li>May 2013&#9;<a href="https://prezi.com/jwhql1fodz_y/java-generics/">Java Generics</a>, <a href="https://www.meetup.com/Londonjavacommunity/">London Java Community</a></li>
 </ul>
+</section>
 
+<section>
 <h2>Posters</h2>
 <ul class="cv">
   <li>June 2016&#9;<a href="../dcmip2016/poster.pdf">Dynamical core model intercomparison project summer school</a></li>
   <li>June 2015&#9;<a href="../posters/ecmwf2015.pdf">Advanced numerical methods for Earth-system modelling, ECMWF</a></li>
   <li>December 2014&#9;<a href="../posters/mpecdt2014.pdf">Mathematics for Planet Earth Centre for Doctoral Training jamboree</a></li>
 </ul>
+</section>
 
+<section>
 <h2>Training</h2>
 <ul class="cv">
   <li>June 2016&#9;<a href="https://www.earthsystemcog.org/projects/dcmip-2016/">Dynamical core intercomparison project summer school, NCAR</a></li>
@@ -146,16 +184,27 @@ extra_css: cv.css
   <li>June 2011&#9;Apache Solr training</li>
   <li>2011&ndash;2002&#9;NEBS management certification, Pershore college (3 week residential course)</li>
 </ul>
+</section>
 
+<section>
 <h2>Outreach</h2>
 <ul class="cv">
   <li>July 2015&#9;Schools physicist of the year awards</li>
   <li>June 2015&#9;East Reading festival</li>
   <li>Februrary 2015&#9;Brighton science festival</li>
 </ul>
+</section>
 <!-- Organised visit from \href{https://www.youtube.com/user/SimonOxfPhys}{Simon Clark}, stratospheric PhD researcher and YouTube vlogger -->
 
-<h2>Interests</h2>
+<section>
+<h2>Skills</h2>
+<ul class="cv">
+  <li><strong>Programming</strong>&#9;Experienced in JavaSE 7, Python, LaTeX, SQL, JSON, XML</li>
+  <li style="margin-top: -0.5em">&#9;Knowledge of C, C++, Fortran, Perl</li>
+  <li><strong>Tools</strong>&#9;Version control systems, debugging, profiling and build tools</li>
+  <li><strong>Systems</strong>&#9;Red Hat, Debian and Ubuntu Linux, Amazon Web Services, Docker</li>
+</ul>
+</section>
 
 </article>
 
