@@ -1,8 +1,9 @@
 table.cv {
-	border-spacing: 1em 0.3em;
+	border-spacing: 0.6em 0.3em;
 }
 
 table.cv td {
+	text-align: left;
 	vertical-align: baseline;
 }
 
@@ -25,9 +26,15 @@ ul.cv li {
 	tab-size: 28;
 }
 
-table.cv td:nth-child(1),
-table.cv td:nth-child(2) {
-	white-space: pre;
+@media screen and (min-width: 600px) {
+	table.cv {
+		border-spacing: 1em 0.3em;
+	}
+
+	table.cv td:nth-child(1),
+	table.cv td:nth-child(2) {
+		white-space: pre;
+	}
 }
 
 table.cv tr.heading {
