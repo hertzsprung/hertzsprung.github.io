@@ -28,16 +28,21 @@ ul.cv li {
 
 @media screen and (min-width: 600px) {
 	table.cv {
-		border-spacing: 1em 0.3em;
+		border-spacing: 1em 0.4em;
 	}
 
 	table.cv td:nth-child(1),
 	table.cv td:nth-child(2) {
 		white-space: pre;
 	}
+
+	table.cv-twocol td:nth-child(2) {
+		white-space: normal;
+	}
 }
 
 table.cv tr.heading {
+	font-size: 13pt;
 	font-weight: bold;
 	color: #122741;
 }
