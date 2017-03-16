@@ -1,0 +1,136 @@
+---
+layout: post
+title:  "The advection process: simulating wind on computers"
+date:   2017-03-16 12:00:00
+---
+<p>
+If we know which way the wind is blowing then we can predict a lot about the weather.
+We can easily observe the wind moving clouds across the sky, but the wind also moves air pollution and greenhouse gases.
+This process is called <em>transport</em> or <em><a href="https://en.wikipedia.org/wiki/Advection">advection</a></em>.
+Accurately simulating the advection process is important for forecasting the weather and predicting climate change.
+</p>
+
+<p>
+I am interested in simulating the advection process on computers by diving the world into boxes and calculating the same equation in every box.  There are many existing advection methods but many rely on these boxes having the correct shape and size, otherwise these existing methods can produce inaccurate simulations.
+</p>
+
+<p>
+During my PhD, I've been developing a new advection method that produces accurate simulations regardless of cell shape or size.
+In this post I'll explain how advection works and how we can simulate advection on computers.
+But, before I do, let's talk about how we observe the weather from the ground.
+</p>
+
+<p>
+In meteorology, we generally have an incomplete picture of the weather.  For example, a <a href="http://www.metoffice.gov.uk/learning/science/first-steps/observations/weather-stations">weather station</a> measures the local air temperature, but <a href="http://www.metoffice.gov.uk/media/pdf/k/5/Fact_sheet_No._17.pdf">there are only a few hundred such stations dotted around the UK</a>.
+The temperature at another location can be approximated by looking at the temperatures reported by nearby stations.  In fact, we can approximate the temperature at <em>any</em> location by <em>reconstructing</em> a continuous temperature field using the weather station measurements.
+</p>
+
+<todo>could have a figure here but not crucial</todo>
+
+<h2>The advection equation</h2>
+<p>
+So far we have only talked about temperatures varying geographically, but temperatures also vary over time.  One reason that temperatures change over time is because the wind is blowing.  For example, a wind blowing from the north transports, or <em>advects</em>, cold air from the arctic southwards over the UK.    How fast the temperature changes depends on the wind speed, and the size of the temperature contrast between the arctic air and the air further south.  We can write this as an equation.  Let's call the wind speed \(v\) and assume that the wind speed and direction are always the same everywhere.  We'll label the temperature \(T\), label time \(t\), and label the south-to-north direction \(y\), then we can write down the advection equation using <a href="https://en.wikipedia.org/wiki/Partial_derivative">partial derivative</a> notation,
+
+\begin{equation*}
+  \frac{\partial T}{\partial t} = - \frac{\partial T}{\partial y} \times v
+\end{equation*}
+
+This equation tells us that the local temperature will vary over time (\(\frac{\partial T}{\partial t}\)), depending on the north-south temperature contrast (\(- \frac{\partial T}{\partial y}\)) multiplied by the wind speed \(v\).
+</p>
+
+<p>
+</p>
+
+<h2>Solving the advection equation</h2>
+
+<p>
+One way to solve the advection equation on a computer is to divide the world into boxes, called <em>cells</em>.
+The complete arrangement of cells is called a <em><a href="https://en.wikipedia.org/wiki/Types_of_mesh">mesh</a></em>.
+At a point at the centre of each cell we store meteorological information such as temperature, water vapour content or pollutant concentration.  At the cell faces where two cells touch we store the wind speed and direction.  The arrangement looks like this:
+
+<figure>
+	<img style="width: 40%" src="/images/britain-cgrid.svg"/>
+	<figcaption>
+	A mesh of cells with temperatures stored at cell centres and winds stored at cell faces.  For illustration, the temperature and winds are only shown in one cell.  This arrangement of data is known as an <a href="https://en.wikipedia.org/wiki/Arakawa_grids">Arakawa C&#x2011;grid</a>.  Figure adapted from <a href="https://commons.wikimedia.org/wiki/File:British_National_Grid.svg">WikiMedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.
+	</figcaption>
+</figure>
+</p>
+
+<p>
+The above example of a mesh over the UK uses cube-shaped cells stacked in columns above the Earth, and arranged along latitude and longitude lines.  But more recently, weather forecasting models are using <a href="https://doi.org/10.1002/qj.958">differently shaped cells arranged in different ways over the globe</a>.  These models tesselate the globe with squares, hexagons or triangles.
+
+<figure>
+	<ul class="subfig">
+		<li><p>Triangular-icosahedral mesh</p><img src="/images/tri-3.svg"/></li>
+		<li><p>Cubed-sphere mesh</p><img src="/images/cubed-8.svg"/></li>
+		<li><p>Hexagonal-icosahedral mesh</p><img src="/images/hex-3.svg"/></li>
+	</ul>
+	<figcaption>
+	The surfaces of some different types of global mesh.  The cells are <a href="https://en.wikipedia.org/wiki/Prism_(geometry)">prismatic</a> since they are stacked in columns above the surface.
+	</figcaption>
+</figure>
+</p>
+
+<p>
+Weather models must also rearrange cells in order to represent mountains, valleys, cliffs and other terrain.  Once again, different models rearrange cells differently.  One method, called the <em><a href="https://en.wikipedia.org/wiki/Sigma_coordinate_system">terrain-following method</a></em>, shifts cells up or down to accommodate the terrain.  Another method, called the <em>cut-cell method</em>, cuts cells where they intersect the terrain.  Here's what these methods look like when we use them to represent an idealised, wave-shaped mountain:
+
+<figure>
+	<ul class="subfig">
+		<li><p>Terrain-following mesh</p><img style="width: 75%" src="/images/btf.svg"/></li>
+		<li><p>Cut-cell mesh</p><img style="width: 75%" src="/images/cutCell.svg"/></li>
+	</ul>
+	<figcaption>
+	Two different methods for representing terrain in weather forecast models.  The terrain-following method is widely used but suffers from large distortions above steep slopes.  The cut cell method alleviates this problem but cells may be very much smaller than most others in a cut cell mesh.
+	</figcaption>
+</figure>
+</p>
+
+<p>
+Once we've chosen a mesh and stored temperature at cell centres and the wind at cell faces, we can start calculating a solution to the advection equation which enables us to forecast how the temperature will vary over time.
+We can solve the advection equation for every cell separately by <a href="https://en.wikipedia.org/wiki/Discretization">discretising</a> the advection equation.  Let's consider a cell with a north face and a south face.
+We want to know how the temperature stored at the cell centre, \(T_\mathrm{cell}\), will vary over time.
+We can calculate this by <em>reconstructing</em> a continuous temperature field and using this to approximate temperature values at the north and south faces of the south, \(T_\mathrm{north}\) and \(T_\mathrm{south}\),
+
+\begin{equation*}
+\frac{\partial T_\mathrm{cell}}{\partial t} = - \frac{T_\mathrm{north} - T_\mathrm{south}}{\Delta y} \times v
+\end{equation*}
+
+where \(\Delta y\) is the distance between the north and south cell faces.
+This is the same reconstruction process that we described earlier, only, instead of approximating temperatures using nearby weather station measurements, we are approximating temperatures using nearby cell centre values.
+</p>
+
+<p>
+There are many existing numerical methods for solving the advection equation but many do not cope well when meshes are distorted, such as terrain-following meshes, or when cells have very different sizes, such as those cells in cut-cell meshes.  Inaccurate solutions to the advection equation lead to inaccuracies in the weather forecast.  In extreme cases, very poor solutions can cause the model software to crash, and this is known as a <em>numerical instability</em>.
+</p>
+
+<p>
+<figure>
+	<img width="100%" src="/images/slug-slantedCells-linearUpwind.gif"/>
+	<figcaption>
+	An idealised simulation of a blob advected over steep mountains.  A numerical instability develops because the cells are so distorted over the mountain.
+	</figcaption>
+</figure>
+We can see a numerical instability growing in this idealised example.  A blob is being advected from left to right over a range of steep, wave-shaped mountains.  This example is using a simple advection method which cannot cope with the distorted cells in this mesh.
+</p>
+
+<p>
+We've developed a new method for solving the advection equation with almost any type of mesh using cubes or hexagons, terrain-following or cut-cell methods.
+The advection method works by reconstructing a continuous field from data stored at cell centre points.  A separate reconstruction is made for every face of every cell in the mesh using about twelve nearby cell centre values.
+Given that weather forecast models have millions of cells, this sounds like an awful lot of calculations.  But it turns out that we can make most of these calculations just once, store them, and reuse them for all our simulations.
+</p>
+
+<p>
+<figure>
+	<img width="100%" src="/images/slug-slantedCells-cubicFit.svg"/>
+	<figcaption>
+	Our new advection method avoids the numerical instability that occurred using the the simple method.
+	</figcaption>
+</figure>
+Here's the same idealised simulation using our new advection method.  The results are numerically stable and accurate.
+</p>
+
+<h2>Further reading</h2>
+<p>
+A preprint of our journal article documenting the new advection method is <a href="https://arxiv.org/abs/1702.00233">available on ArXiv</a>.  I also have <a href="http://www.datumedge.co.uk/2017/01/20/creating-a-high-order-finite-volume-scheme/">another blog post</a> that talks about how to make the method even more accurate.
+Or <a href="https://twitter.com/hertzsprrrung">follow me on Twitter</a> for more animations the numerical methods I'm developing.  
+</p>
