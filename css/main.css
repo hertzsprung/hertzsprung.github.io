@@ -286,4 +286,9 @@ footer.site li.license {
 	-moz-column-count: 1;
 	column-count: 1;
   }
+
+  article figure {
+	  margin-left: 0.5em;
+	  margin-right: 0.5em;
+  }
 }
