@@ -59,3 +59,7 @@ strong {
 	font-weight: bold;
 	color: #122741;
 }
+
+p.headline {
+	margin-top: 0;
+}
