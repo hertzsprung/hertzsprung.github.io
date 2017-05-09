@@ -47,10 +47,9 @@ extra_css: cv.css
     <tr><td colspan="3" class="detail">
       <p class="headline">I am improving numerical methods for simulating atmospheric flows over mountains, supervised by <a href="http://www.met.reading.ac.uk/userpages/sws02hs.php">Hilary Weller</a> (UoR), <a href="http://www.met.reading.ac.uk/userpages/swrmethn.php">John Methven</a> (UoR) and <a href="http://www.metoffice.gov.uk/research/people/terry-davies">Terry Davies</a> (UK Met Office)</p>
       <ul>
-        <li>Created a new type of mesh for representing terrain to avoid mesh distortions and very small cells</li>
-        <li>Made a like-for-like comparison between different types of mesh using an <a href="https://github.com/AtmosFOAM/AtmosFOAM">OpenFOAM atmospheric model</a> that is suitable for arbitrary meshes</li>
         <li>Designed a new finite volume advection scheme for flows over steep slopes represented by arbitrary meshes</li>
-        <li>Exploring a generalisation of the Charney&ndash;Phillips staggering for arbitrary meshes</li>
+        <li>Contributing my advection scheme code upstream to the <a href="https://github.com/AtmosFOAM/AtmosFOAM">OpenFOAM CFD project</a>
+        <li>Performed numerical analyses to ensure numerical stability of the scheme on highly-distorted meshes</li>
         <li><a href="../talks/quo-vadis2015.pptx">Quo Vadis presentation</a> runner-up 2016</li>
       </ul>
       <p>The project is <a href="http://gotw.nerc.ac.uk/list_full.asp?pcode=NE%2FK500860%2F1">funded by NERC</a> with CASE sponsorship from the UK Met Office</p>
@@ -100,7 +99,7 @@ extra_css: cv.css
   <tr><td colspan="3" class="detail">
     <ul>
       <li>Refactored workflow system to allow automated testing of individual components</li>
-      <li>Extended MySQL database schemas to support new track-and-trace logistitics software</li>
+      <li>Extended MySQL database schemas to support new track-and-trace logistics software</li>
     </ul>
   </td></tr>
   <tr class="heading"><td>2006&ndash;2007</td><td>Anite</td><td>Software developer</td></tr>
@@ -118,6 +117,16 @@ extra_css: cv.css
 </section>
 
 <section>
+<h2>Skills</h2>
+<ul class="cv">
+  <li><strong>Programming</strong>&#9;Experienced in JavaSE 7, Python 3, SQL, JSON, XML, AWS DynamoDB</li>
+  <li style="margin-top: -0.5em">&#9;Knowledge of C, C++, Fortran</li>
+  <li><strong>Tools</strong>&#9;Subversion, Git, GNU make, continuous integration and debugging tools</li>
+  <li><strong>Systems</strong>&#9;Red Hat, Debian and Ubuntu Linux, Amazon Web Services EC2, Docker</li>
+</ul>
+</section>
+
+<section>
 <h2>Publications</h2>
 <ul class="cv-publications">
   <li><strong>Shaw, J.</strong>, <a href="http://orcid.org/0000-0003-4553-7082">H. Weller</a>, <a href="http://orcid.org/0000-0002-7636-6872">J. Methven</a>, and T. Davies (2017) <em>Multidimensional method-of-lines transport for atmospheric flows over steep terrain using arbitrary meshes</em>. Journal of Computational Physics. <code><a href="https://dx.doi.org/10.1016/j.jcp.2017.04.061">doi: 10.1016/j.jcp.2017.04.061</a></code></li>
@@ -127,28 +136,16 @@ extra_css: cv.css
 </section>
 
 <section>
-<h2>Skills</h2>
-<ul class="cv">
-  <li><strong>Programming</strong>&#9;Experienced in JavaSE 7, Python 3, LaTeX, SQL, JSON, XML, AWS DynamoDB</li>
-  <li style="margin-top: -0.5em">&#9;Knowledge of C, C++, Fortran</li>
-  <li><strong>Tools</strong>&#9;Git, Subversion, GNU Make, Travis-CI, debugging and profiling tools</li>
-  <li><strong>Systems</strong>&#9;Red Hat, Debian and Ubuntu Linux, Amazon Web Services EC2, Docker</li>
-</ul>
-</section>
-
-<section>
 <h2>Teaching</h2>
 <table class="cv">
   <tbody>
-  <tr class="heading"><td>Autumn 2016</td><td>Assistant</td><td><a href="http://www.reading.ac.uk/modules/document.aspx?modP=MTMW11&modYR=1617">Fluid dynamics MSc module</a></td></tr>
-  <tr class="heading"><td>Autumn 2015</td><td>Assistant</td><td><a href="http://www.reading.ac.uk/modules/document.aspx?modP=MTMG02&modYR=1516">Atmospheric physics MSc module</a></td></tr>
-  <tr class="heading"><td>September 2015</td><td>Assistant</td><td><a href="https://www.ncas.ac.uk/index.php/en/climate-modelling-summer-school">NCAS climate modelling summer school</a></td></tr>
+  <tr><td>September 2015</td><td>Assistant</td><td><a href="https://www.ncas.ac.uk/index.php/en/climate-modelling-summer-school">NCAS climate modelling summer school</a></td></tr>
     <tr><td colspan="3" class="detail">
       <ul>
         <li>Helped PhD and post-doctoral researchers analyse numerical schemes and implement them in Python</li>
       </ul>
     </td></tr>
-  <tr class="heading"><td>September 2014</td><td>Course teacher</td><td><a href="http://mpecdt.org/">Mathematics for Planet Earth</a></td></tr>
+  <tr><td>September 2014</td><td>Course teacher</td><td><a href="http://mpecdt.org/">Mathematics for Planet Earth</a></td></tr>
     <tr><td colspan="3" class="detail">
       <ul>
         <li>Created and delivered a new, <a href="https://doi.org/10.6084/m9.figshare.4681453.v1">three-day scientific programming course</a> for the first cohort of mathematics students</li>
@@ -156,64 +153,26 @@ extra_css: cv.css
     </td></tr>
   </tbody>
 </table>
+<p style="margin-top: 0;">I have also assisted teaching fluid dynamics and atmospheric physics MSc modules</p>
 </section>
 
 <section>
-<h2>Workshops</h2>
+<h2>Selected workshops</h2>
 <table class="cv">
   <tbody>
     <tr><td>September 2017</td><td>Applicant</td><td><a href="https://sites.google.com/site/scicade2017/">International conference on scientific computation and differential equations, University of Bath</a></td></tr>
     <tr><td>June 2017</td><td>Participant</td><td><a href="https://www.software.ac.uk/c4rr">Docker containers for reproducible research, Software Sustainability Institute, University of Cambridge</a></td></tr>
     <tr><td>April 2017</td><td><a href="https://doi.org/10.6084/m9.figshare.4833554.v2">Speaker</a></td><td><a href="https://pdes2017.sciencesconf.org">PDEs on the sphere, École normale supérieure, Paris</a></td></tr>
-    <tr><td>March 2017</td><td>Attendee</td><td><a href="https://blogs.reading.ac.uk/open-research/open-in-practice-inspirations-strategies-and-methods-for-open-research/">Open in practice: Inspirations, strategies and methods for open research, University of Reading</a></td></tr>
   <tr><td>February 2017</td><td><a href="https://doi.org/10.6084/m9.figshare.4652410.v1">Invited speaker</a></td><td><a href="http://mpecdt.org/gfdnumericsfeb2017/">Numerical methods for geophysical fluid dynamics, Imperial College London</a></td></tr>
-  <tr><td>January 2017</td><td>Participant</td><td><a href="https://www.eventbrite.co.uk/e/research-software-management-sharing-and-sustainability-workshop-tickets-29224950614">Research software management, sharing and sustainability, British Library</td></tr>
+  <tr><td>January 2017</td><td>Participant</td><td><a href="https://www.eventbrite.co.uk/e/research-software-management-sharing-and-sustainability-workshop-tickets-29224950614">Research software management, sharing and sustainability, Software Sustainability Institute/JISC, British Library</td></tr>
   <tr><td>December 2016</td><td><a href="https://doi.org/10.6084/m9.figshare.4307957.v1">Invited speaker</a></td><td><a href="https://www.rmets.org/events/meteorological-research-within-university-reading-2016">South-East local centre meeting, Royal Meteorological Society</a></li>
-  <tr><td>October 2016</td><td><a href="../ecmwfnumerics2016">Speaker</a></td><td><a href="http://www.ecmwf.int/en/learning/workshops-and-seminars/workshop-numerical-and-computational-methods-simulation-all-scale-geophysical-flows">Numerical and computational methods for simulation of all-scale geophysical flows, ECMWF</a></tr>
-  <tr><td>May 2016</td><td><a href="http://connection.sagepub.com/blog/sage-connection/2016/07/27/approaching-peer-review-for-the-first-time-3-tips-from-an-early-career-researcher/">Participant</a></td><td><a href="http://archive.senseaboutscience.org/pages/peer-review-the-nuts-bolts-may-2016.html">Peer review: the nuts and bolts, Sense about Science</a></td></tr>
   <tr><td>November 2015</td><td>Attendee</td><td>GungHo workshop on next generation weather and climate prediction, UK Met Office</td></tr>
-  <tr><td>June 2015</td><td>Attendee</td><td><a href="http://www.met.reading.ac.uk/hoskins/">Hoskins@70, University of Reading</a></td></tr>
-  <tr><td>June 2015</td><td>Participant</td><td><a href="http://www.met.reading.ac.uk/nercdtp/home/events/SCENARIO_Conference_June2015.pdf">SCENARIO Doctoral Training Programme conference, University of Surrey</a></td></tr>
-  <tr><td>March 2015</td><td><a href="http://www.icms.org.uk/downloads/Galerkin/Shaw.pdf">Speaker</a></td><td><a href="http://www.icms.org.uk/workshop.php?id=334">Galerkin methods with applications in weather and climate forecasting, ICMS</a></td></tr>
   <tr><td>April 2013</td><td>Attendee</td><td>AWS Summit, London</td></tr>
-  <tr><td>March 2013</td><td>Exhibitor</td><td>Devoxx London</a></td></tr>
   <tr><td>November 2012</td><td>Participant</td><td>Rewired State: Parliament 2012 hack weekend</td></tr>
   <tr><td>June 2012</td><td>Participant</td><td><a href="https://www.meetup.com/Londonjavacommunity/events/70388732/">Java 8 lambda hack day, London Java Community</a></td></tr>
   <tr><td>October 2011</td><td>Attendee</td><td><a href="https://blogs.oracle.com/javaone/javaone-2011-2">Oracle JavaOne</a></td></tr>
   </tbody>
 </table>
-</section>
-
-<section>
-<h2>Informal talks</h2>
-<ul class="cv">
-  <li>November 2016&#9;<a href="https://doi.org/10.6084/m9.figshare.4509110.v1">Replicating computational atmospheric science</a></li>
-  <li>March 2016&#9;<a href="../talks/quo-vadis2015.pptx">Numerical representation of orography in dynamical cores</a></li>
-  <li>February 2016&#9;<a href="../talks/mesoscale2015.pdf">Curl-free pressure gradients for accurate modelling of cold air pools</a></li>
-  <li>October 2015&#9;<a href="../talks/hhh2015.pptx">Improving modelled mountain flows with alternative representations of terrain</a></li>
-  <li>April 2015&#9;<a href="../talks/discrete-vector-calculus-c-grid.pdf">Discrete vector calculus on Arakawa C grids</a></li>
-  <li>May 2013&#9;<a href="https://prezi.com/jwhql1fodz_y/java-generics/">Java Generics</a>, <a href="https://www.meetup.com/Londonjavacommunity/">London Java Community</a></li>
-</ul>
-</section>
-
-<section>
-<h2>Posters</h2>
-<ul class="cv">
-  <li>June 2016&#9;<a href="../dcmip2016/poster.pdf">Dynamical core model intercomparison project summer school</a></li>
-  <li>June 2015&#9;<a href="../posters/ecmwf2015.pdf">Advanced numerical methods for Earth-system modelling, ECMWF</a></li>
-  <li>December 2014&#9;<a href="../posters/mpecdt2014.pdf">Mathematics for Planet Earth Centre for Doctoral Training jamboree</a></li>
-</ul>
-</section>
-
-<section>
-<h2>Training</h2>
-<ul class="cv">
-  <li>June 2016&#9;<a href="https://www.earthsystemcog.org/projects/dcmip-2016/">Dynamical core intercomparison project summer school, NCAR</a></li>
-  <li>June 2015&#9;<a href="http://www.ecmwf.int/en/learning/training/advanced-numerical-methods-for-earth-system-modelling">Advanced numerical methods for Earth-system modelling, ECMWF</a></li>
-  <li>October 2012&#9;Computing for data analysis, Johns Hopkins University, Coursera</li>
-  <li>June 2011&#9;Apache Solr training</li>
-  <li>2011&ndash;2002&#9;NEBS management certification, Pershore college (3 week residential course)</li>
-</ul>
 </section>
 
 <section>
@@ -225,6 +184,16 @@ extra_css: cv.css
   <tr><td>November 2015</td><td>Arranged a meeting with UK Met Office heads of department and dynamics research staff to discuss progress and future PhD research plans.</td></tr>
 </tbody>
 </table>
+</section>
+
+<section>
+<h2>Training</h2>
+<ul class="cv">
+  <li>June 2016&#9;<a href="https://www.earthsystemcog.org/projects/dcmip-2016/">Dynamical core intercomparison project summer school, NCAR</a></li>
+  <li>June 2015&#9;<a href="http://www.ecmwf.int/en/learning/training/advanced-numerical-methods-for-earth-system-modelling">Advanced numerical methods for Earth-system modelling, ECMWF</a></li>
+  <li>October 2012&#9;Computing for data analysis, Johns Hopkins University, Coursera</li>
+  <li>June 2011&#9;Apache Solr training</li>
+</ul>
 </section>
 
 <section>
