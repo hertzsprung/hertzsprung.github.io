@@ -1,7 +1,3 @@
-section {
-	page-break-inside: avoid;
-}
-
 header.site,
 footer.site {
 	display: none !important;
