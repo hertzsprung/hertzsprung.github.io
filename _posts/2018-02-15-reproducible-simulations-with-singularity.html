@@ -1,0 +1,35 @@
+---
+layout: post
+title:  "Reproducible simulations with Singularity"
+date:   2018-02-15 10:00:00
+---
+<p>
+Reproducing the result of a scientific experiment is necessary to establish trust, and reproducibility has long been a key part of the scientific method.
+Traditionally, an experiment could be repeated by following the method documented by the original scientists: setting up apparatus, taking measurements, and so on.  If the method was sufficiently well documented then it was, perhaps, likely that the original results could be reproduced.
+These &lsquo;wet lab&rsquo; experiments continue today, but many experiments are now performed entirely on computers.
+Such computational experiments involve no physical apparatus, but merely the processing of input data files through some scientific software before writing more data files for later analysis and plotting.
+</p>
+
+<p>
+Repeating computational experiments is particularly difficult because, before any results can be obtained, there are many pieces of software apparatus that must be assembled: we must install an operating system, choose the correct version of our programming language and all the necessary scientific libraries, and we must use input parameters that are identical to those used in the original experiment.
+Assembling any of these pieces incorrectly might lead to subtly incorrect results, obviously incorrect results, or a failure to obtain any results at all.
+All this places a burden on the original scientists to document every piece of software, its version number and input parameters, and places a burden on the scientist wishing to reproduce the results.
+</p>
+
+<p>
+There are a variety of tools that help to relieve this burden by automating the process of conducting computational experiments.
+<a href="http://singularity.lbl.gov">Singularity</a> is one such tool, having been purpose-built for automating computational experiments.
+A scientist creates a single configuration file that provides all the information Singularity needs to assemble the pieces of software apparatus and perform the experiment.
+This way, instead of writing a &lsquo;method&rsquo; section that is only <a href="https://en.wikipedia.org/wiki/Human-readable_medium">human-readable</a>, the scientist has written a configuration file that is both human-readable and <a href="https://en.wikipedia.org/wiki/Machine-readable_data">machine-readable</a>.
+Using this configuration, Singularity will create an image file with all the correct versions of scientific software pre-installed.
+The scientist can verify their work by reproducing their experiment themselves, and they can run the same experiment just by copying the image file between their personal laptop, office workstation, or their institution's HPC cluster.
+And they can send their Singularity configuration file and image files to other scientists, or they can obtain a <a href="https://en.wikipedia.org/wiki/Digital_object_identifier">DOI</a> by uploading the files to <a href="http://help.zenodo.org/features/">Zenodo</a>, making their computational experiments citeable in the same way as their journal publications.
+</p>
+
+<p>
+I've used Singularity to run my own atmospheric simulations using the <a href="https://openfoam.org/">OpenFOAM computational fluid dynamics</a> software.
+While my results have yet to be reproduced by others, I regularly use Singularity to reproduce my own results on my laptop, university desktop and <a href="https://aws.amazon.com/ec2/">AWS cloud compute servers</a>, giving me confidence that my software and my results are robust.
+Whenever I've been stuck, the friendly Singularity developers have been quick to help out <a href="https://twitter.com/singularityapp">on twitter</a>.
+But overall, I've found Singularity to be easy to use, and anyone that is familiar with git commands should feel right at home using it.  Give it a try!
+</p>
+
