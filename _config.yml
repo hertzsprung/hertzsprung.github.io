@@ -28,7 +28,7 @@ paginate: 5
 relative_permalinks: false
 
 # Build settings
-gems:
+plugins:
   - jekyll-paginate
   - jekyll-gist
   - jekyll-redirect-from
