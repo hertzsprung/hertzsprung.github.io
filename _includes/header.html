@@ -1,13 +1,18 @@
 <header class="site">
-  <h1><a href="{{ site.baseurl }}/">{{ site.title }}</a></h1>
-  <p>The website of James Shaw, a postdoctoral researcher at <a href="https://www.sheffield.ac.uk/civil/water">The University of Sheffield</a> developing mathematical methods for flood simulators</p>
+  <h1>
+  <span><a href="{{ site.baseurl }}/">{{ site.title }}</a></span>
+  <span>The website of James Shaw</span>
+  </h1>
 
   <nav>
     <ul>
       <li><a href="{{ site.baseurl }}/">Home</a></li>
-      <li><a href="{{ site.baseurl }}/software/">Software</a></li>
-      <li><a href="{{ site.baseurl }}/cv/">Curriculum vitae</a></li>
-      <li><a href="{{ site.baseurl }}/about/">About me</a></li>
+      {% comment %}
+      <li>Blog</li>
+      <li>Curriculum Vitae</li>
+      {% endcomment %}
+      <li><a href="https://twitter.com/{{ site.twitter_username }}">Twitter</a></li>
+      <li><a href="https://github.com/{{ site.github_username }}">GitHub</a></li>
     </ul>
   </nav>
 </header>

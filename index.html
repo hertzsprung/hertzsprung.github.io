@@ -1,37 +1,15 @@
 ---
 layout: default
 ---
-{% for post in paginator.posts %}
-  <article class="preview">
-    <h1><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
-    <p class="meta">{{ post.date | date: "%-d %B %Y" }}</p>
-    {{ post.excerpt }}
-    <p><a href="{{ post.url | prepend: site.baseurl }}">Read more&hellip;</a></p>
-  </article>
-{% endfor %}
+<figure style="max-width: 40%" class="float-right">
+  <img style="width: 100%" src="/images/jshaw.jpeg"/>
+</figure>
 
-{% if paginator.total_pages > 1 %}
-  <p class="pagination">
-    {% if paginator.previous_page %}
-      <a href="{{ paginator.previous_page_path }}">&#9664; Previous</a>
-    {% else %}
-      &#9664; Previous
-    {% endif %}
+<p>I&rsquo;m James Shaw, a software engineer at <a href="https://www.thefloow.com">The Floow</a>, where I write code to promote safer driving.
+</p>
 
-    {% for page in (1..paginator.total_pages) %}
-      {% if page == paginator.page %}
-        {{ page }}
-      {% elsif page == 1 %}
-        <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: 'page:num', '' }}">{{ page }}</a>
-      {% else %}
-        <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
-      {% endif %}
-    {% endfor %}
+<p>
+Prior to this, I worked in academia developing <a href="https://www.bristol.ac.uk/geography/research/hydrology/models/lisflood/">LISFLOOD-FP</a> finite element solvers for flood forecasting at <a href="https://www.sheffield.ac.uk/civil">The University of Sheffield</a>, and <a href="https://www.openfoam.org">OpenFOAM</a> finite volume solvers for weather forecasting at the <a href="https://www.reading.ac.uk/met/">University of Reading</a>.
+</p>
 
-    {% if paginator.next_page %}
-      <a href="{{ paginator.next_page_path }}">Next &#9654;</a>
-    {% else %}
-      Next &#9654;
-    {% endif %}
-  </p>
-{% endif %}
+<p>Before returning to academia, I worked in the server engineering team at <a href="https://www.shazam.com">Shazam</a>,  headed by the <a href="https://jaxenter.com/tests-need-love-113991.html">test-driven development guru</a>, <a href="https://twitter.com/tddmonkey">Colin Vipurs</a>.</p>

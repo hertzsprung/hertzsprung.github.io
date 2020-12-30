@@ -1,294 +1,105 @@
-body {
-	font-family: 'Merriweather', serif;
-	font-size: 12pt;
+body
+{
 	background-color: #fdfdfd;
+
 	margin: 0 auto;
-	margin-top: 2em;
 	max-width: 50em;
 	padding-left: 1em;
 	padding-right: 1em;
+
+	text-align: justify;
+	text-align-last: left;
+
+	font-family: 'Lato', sans-serif;
+	line-height: 1.4
 }
 
-a {
+a
+{
 	text-decoration: none;
 	color: #2A5E94;
 }
 
-a:hover {
+a:hover
+{
 	text-decoration: underline;
 }
 
-a:active {
-	color: #4293E8;
-}
-
-p.meta {
+h1, h2, h3
+{
+	font-family: 'Merriweather', serif;
 	font-weight: 300;
-	font-size: larger;
-	margin-top: 0;
 }
 
-pre {
-	text-align: left;
-	white-space: pre-wrap;
-	background: #EEE;
-	margin: 0.2em;
-	padding: 0.3em;
+figure
+{
+	margin: auto;
 }
 
-todo {
-	display: none;
-}
-
-.se-logo {
-	vertical-align: middle;
-	width: 2em;
-	margin-right: 0.3em;
-}
-
-ul.compact li {
-	text-align: left;
-	margin-bottom: 0.3em;
-}
-
-.two-col {
-	-webkit-column-count: 2;
-	-moz-column-count: 2;
-	column-count: 2;
-}
-
-.two-col section {
-	-webkit-column-break-inside: avoid;
-	page-break-inside: avoid;
-	break-inside: avoid-column;
-}
-
-/* article */
-
-article {
-	text-align: justify;
-	line-height: 1.35;
-	margin-bottom: 3em;
-	overflow: auto;
-}
-
-article h1,
-article h2,
-article h3 {
-	font-weight: 300;
-	color: #122741;
-	text-align: left;
-}
-
-article h1 {
-	font-size: 28pt;
-	line-height: 1.2;
-	margin-bottom: 0.2em;
-}
-
-article h2 {
-	font-size: 18pt;
-	margin-top: 1.2em;
-}
-
-article h3 {
-	font-size: 13pt;
-	font-weight: bold;
-	margin-top: 1.2em;
-}
-
-article li,
-article dd {
-	margin-bottom: 0.7em;
-}
-
-article dt {
-	text-align: left;
-}
-
-article figure {
-	border-top: 1pt solid #CEE2EB;
-	border-bottom: 1pt solid #CEE2EB;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
-}
-
-article figcaption {
-	margin-top: 0.5em;
-}
-
-article ul.subfig { 
-	list-style: none;
-	display: flex;
-	margin: 0 auto;
-}
-
-article ul.subfig li {
-	display: inline;
-	text-align: center;
-	margin-left: 0.5em;
-	margin-right: 0.5em;
-}
-
-article ul.subfig img {
-	display: inline-block;
-}
-
-article img {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-article .float-right {
+figure.float-right {
 	float: right;
-	margin: 1em;
+	margin-left: 2em;
 }
 
-article figcaption {
-	font-size: smaller;
-}
+/* site */
 
-.social {
-	text-align: right;
-}
-
-.twitter-share-button {
-	display: inline-block;
-	margin-left:auto;
-	margin-right:0;
-}
-
-
-/* header */
-
-header.site {
-	border-bottom: 1px solid #CEE2EB;
+header.site
+{
+	border-bottom: 1px solid #cee2eb;
 	margin-bottom: 1em;
 }
 
-header.site p {
-	margin-bottom: 0.5em;
-	max-width: 36em;
-	color: #333;
+footer.site {
+	border-top: 1px solid #cee2eb;
+	margin-top: 1em;
+	clear: both;
 }
 
-header.site h1 {
-	font-weight: 300;
+.site h1
+{
 	font-size: 40pt;
-	margin-top: 0;
-	margin-bottom: 0.3em;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: baseline
 }
 
-header.site h1 a,
-header.site h1 a:visited,
-article h1 a {
+.site h1 span:last-child
+{
+	font-size: large;
+}
+
+.site h1 a,
+.site h1 a:visited
+{
 	color: #122741;
 }
 
-header.site h1 a:hover,
-header.site h1 a:active,
-article h1 a:hover,
-article h1 a:active {
+.site h1 a:hover,
+.site h1 a:active
+{
 	text-decoration: none;
 	color: #255187;
 }
 
-/* header nav */
-
-header.site nav ul { 
-	list-style: none;
-	display: flex;
-	flex-wrap: wrap;
-	margin: 0 auto;
-	justify-content: center;
+/* https://stackoverflow.com/a/48752954 */
+.site nav ul > *
+{
+	margin: 0.25em 0.5em;
 }
 
-header.site nav li {
-	display: inline;
-	white-space: nowrap;
-}
-
-header.site nav li:after {
-	color: #122741;
-	content:'\00B7';
-	margin-left: 0.5em;
-	margin-right: 0.5em;
-}
-
-header.site nav li:last-child:after {
-	content:'';
-}
-
-/* footer */
-
-footer.site {
-	border-top: 1px solid #CEE2EB;
-	padding-top: 0.5em;
-}
-
-.pagination {
-	text-align: center;
-}
-
-footer.site {
-	margin-top: 1em;
-}
-
-footer.site a:hover {
-	text-decoration: none;
-}
-
-footer.site ul.nav { 
+.site nav ul
+{ 
 	list-style: none;
 	padding-left: 0;
-	display: table;
-	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	margin: -0.25em -0.5em;
 }
 
-footer.site ul.nav li {
+.site nav li
+{
 	display: inline;
-	padding-left: 0.5em;
-}
-
-footer.site li.license {
 	white-space: nowrap;
-}
-
-/* gist */
-
-.gist .blob-code-inner,
-.gist .blob-num {
-	font-size: 11pt !important;
-}
-
-/* resizing */
-
-@media screen and (max-width: 600px) {
-  body {
-	margin-top: 1em;
-  }
-
-  header.site h1 {
-	font-size: 32pt;
-  }
-
-  article h1 {
-	font-size: 24pt;
-  }
-
-  article h2 {
-	font-size: 16pt;
-  }
-
-  .two-col {
-	-webkit-column-count: 1;
-	-moz-column-count: 1;
-	column-count: 1;
-  }
-
-  article figure {
-	  margin-left: 0.5em;
-	  margin-right: 0.5em;
-  }
+	font-size: larger;
 }

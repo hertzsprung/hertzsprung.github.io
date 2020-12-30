@@ -2,20 +2,11 @@
 title: DatumEdge
 email: js102@zepler.net
 baseurl: ""
-url: "http://www.datumedge.co.uk"
+url: "https://www.datumedge.co.uk"
 disqus_shortname: datumedge
-googleanalytics_trackingid: UA-21222854-2
-googlecustomsearch_id: 003903941295629604213:gghbd3b-5hi
 twitter_username: hertzsprrrung
 github_username:  hertzsprung
-flickr_username: hzsp
-linkedin_userid: james-shaw-ba759a65
-figshare_userid: James_Shaw/3392516
-researchgate_userid: James_Shaw14
-googlescholar_userid: HKgUofEAAAAJ
-orcid: 0000-0002-0928-3604
 stackoverflow_userid: 150884
-stackexchange_userid: 50566
 defaults:
   -
     scope:

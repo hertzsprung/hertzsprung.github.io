@@ -13,15 +13,16 @@
     {% for css in page.extra_css %}
       <link rel="stylesheet" href="{{ "/css/" | append: css | prepend: site.baseurl }}"/>
     {% endfor %}
-    <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Merriweather:400,400italic,300,700'/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Lato:ital@0;1&display=swap">
 
     <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: { equationNumbers: { autoNumber: "AMS" } }
 });
     </script>
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-    {% include googleanalytics.html %}
+    <script type="text/javascript" async
+	    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     {% for script in page.extra_script %}
       <script src="{{ script }}" type="text/javascript"></script>
     {% endfor %}
