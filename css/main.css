@@ -2,7 +2,7 @@ body
 {
 	background-color: #fdfdfd;
 
-	margin: 0 auto;
+	margin: 0 auto 0.5em;
 	max-width: 50em;
 	padding-left: 1em;
 	padding-right: 1em;
@@ -29,6 +29,7 @@ h1, h2, h3
 {
 	font-family: 'Merriweather', serif;
 	font-weight: 300;
+	text-align: left;
 }
 
 figure
@@ -53,6 +54,7 @@ footer.site {
 	border-top: 1px solid #cee2eb;
 	margin-top: 1em;
 	clear: both;
+	font-size: smaller;
 }
 
 .site h1
@@ -83,6 +85,28 @@ footer.site {
 }
 
 /* https://stackoverflow.com/a/48752954 */
+.pagination ul > *
+{
+	margin: 0.25em;
+}
+
+.pagination ul
+{
+	list-style: none;
+	padding-left: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: baseline;
+	margin: -0.25em;
+}
+
+.pagination li
+{
+	display: inline;
+	white-space: nowrap;
+}
+
 .site nav ul > *
 {
 	margin: 0.25em 0.5em;
@@ -94,6 +118,7 @@ footer.site {
 	padding-left: 0;
 	display: flex;
 	flex-wrap: wrap;
+	align-items: baseline;
 	margin: -0.25em -0.5em;
 }
 
@@ -102,4 +127,63 @@ footer.site {
 	display: inline;
 	white-space: nowrap;
 	font-size: larger;
+}
+
+/* article */
+
+article h1 {
+	font-size: x-large;
+	line-height: 1.2;
+	margin-bottom: 0.2em;
+}
+
+article .meta {
+	font-family: 'Merriweather', serif;
+	font-weight: 300;
+	font-size: larger;
+	margin-top: 0;
+}
+
+article figure {
+	border-top: 1pt solid #cee2eb;
+	border-bottom: 1pt solid #cee2eb;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	text-align: center;
+	text-align-last: center;
+}
+
+article figcaption {
+	margin-top: 0.5em;
+	padding: 0 1em;	
+	line-height: 1.2;	
+	text-align: justify;
+	text-align-last: left;
+}
+
+article ul.subfig > *
+{
+	margin: 0.25em 0.5em;
+}
+
+article ul.subfig
+{
+	list-style: none;
+	padding-left: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: -0.25em -0.5em;
+}
+
+article ul.subfig li
+{
+	display: block;
+	text-align: center;
+	text-align-last: center;
+}
+
+article ul.subfig p
+{
+	margin-top: 0;
 }

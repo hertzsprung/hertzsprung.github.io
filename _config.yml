@@ -17,6 +17,7 @@ defaults:
 
 paginate: 5
 relative_permalinks: false
+paginate_path: "blog/page:num/"
 
 # Build settings
 plugins:

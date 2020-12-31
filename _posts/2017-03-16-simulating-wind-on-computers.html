@@ -2,6 +2,7 @@
 layout: post
 title:  "The advection process: simulating wind on computers"
 date:   2017-03-16 12:00:00
+math:   true
 ---
 <p>
 If we know which way the wind is blowing then we can predict a lot about the weather.
@@ -44,7 +45,7 @@ The complete arrangement of cells is called a <em><a href="https://en.wikipedia.
 At a point at the centre of each cell we store meteorological information such as temperature, water vapour content or pollutant concentration.  At the cell faces where two cells touch we store the wind speed and direction.  The arrangement looks like this:
 
 <figure>
-	<img style="width: 40%" src="/images/britain-cgrid.svg"/>
+	<img style="width: 20em; max-width:80%;" src="/images/britain-cgrid.svg"/>
 	<figcaption>
 	A mesh of cells with temperatures stored at cell centres and winds stored at cell faces.  For illustration, the temperature and winds are only shown in one cell.  This arrangement of data is known as an <a href="https://en.wikipedia.org/wiki/Arakawa_grids">Arakawa C&#x2011;grid</a>.  Figure adapted from <a href="https://commons.wikimedia.org/wiki/File:British_National_Grid.svg">WikiMedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.
 	</figcaption>
@@ -56,9 +57,9 @@ The above example of a mesh over the UK uses cube-shaped cells stacked in column
 
 <figure>
 	<ul class="subfig">
-		<li><p>Triangular-icosahedral mesh</p><img style="width: 65%;" src="/images/tri-3.svg"/></li>
-		<li><p>Cubed-sphere mesh</p><img style="width: 95%;" src="/images/cubed-8.svg"/></li>
-		<li><p>Hexagonal-icosahedral mesh</p><img style="width: 65%;" src="/images/hex-3.svg"/></li>
+		<li><p>Triangular-icosahedral mesh</p><img style="max-width: 12em;" src="/images/tri-3.svg"/></li>
+		<li><p>Cubed-sphere mesh</p><img style="max-width: 12em;" src="/images/cubed-8.svg"/></li>
+		<li><p>Hexagonal-icosahedral mesh</p><img style="max-width: 12em;" src="/images/hex-3.svg"/></li>
 	</ul>
 	<figcaption>
 	The surfaces of some different types of global mesh.  The cells are <a href="https://en.wikipedia.org/wiki/Prism_(geometry)">prismatic</a> since they are stacked in columns above the surface.
@@ -71,8 +72,8 @@ Weather models must also rearrange cells in order to represent mountains, valley
 
 <figure>
 	<ul class="subfig">
-		<li><p>Terrain-following mesh</p><img style="width: 75%" src="/images/btf.svg"/></li>
-		<li><p>Cut-cell mesh</p><img style="width: 75%" src="/images/cutCell.svg"/></li>
+		<li><p>Terrain-following mesh</p><img style="max-width: 20em;" src="/images/btf.svg"/></li>
+		<li><p>Cut-cell mesh</p><img style="max-width: 20em;" src="/images/cutCell.svg"/></li>
 	</ul>
 	<figcaption>
 	Two different methods for representing terrain in weather forecast models.  The terrain-following method is widely used but suffers from large distortions above steep slopes.  The cut cell method alleviates this problem but cells may be very much smaller than most others in a cut cell mesh.
