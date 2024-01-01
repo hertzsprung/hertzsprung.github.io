@@ -4,7 +4,7 @@ email: js102@zepler.net
 baseurl: ""
 url: "https://www.datumedge.co.uk"
 disqus_shortname: datumedge
-twitter_username: hertzsprrrung
+mastodon_username: hertzsprung
 github_username:  hertzsprung
 stackoverflow_userid: 150884
 defaults:
